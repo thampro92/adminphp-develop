@@ -3,7 +3,7 @@
         <div class="sidebar-brand">
             <a href="<?php echo base_url('admin') ?>">CMS Admin</a>
             <div id="close-sidebar">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-bars"></i>
             </div>
         </div>
         <div class="sidebar-header">
@@ -12,14 +12,15 @@
                      alt="User picture">
             </div>
             <div class="user-info">
-            <span class="user-name"><?php echo $admin_info->UserName?>
+            <span class="user-name">
+                <span><?php echo $admin_info->UserName ?></span>
             <a title="Đổi mật khẩu" style="margin: -30px; padding: 30px;"
                class="tipS" data-toggle="modal"
                data-target="#changePassword-modal">
-                        <img src="<?php echo public_url('admin') ?>/images/icons/key.png"/>
+                        <img src="<?php echo public_url('admin') ?>/images/icons/change-pwd.png"/>
             </a>
           </span>
-                <span class="user-role"><?php echo $admin_info->FullName?></span>
+                <span class="user-role"><?php echo $admin_info->FullName ?></span>
                 <span class="user-status" style="display: none">
                     <i class="fa fa-circle"></i>
                     người chơi</span>
@@ -42,16 +43,16 @@
     <div class="sidebar-footer">
         <a href="<?php echo base_url('admin') ?>">
             <i class="fa fa-home" aria-hidden="true"></i>
-<!--            <span class="badge badge-pill badge-warning notification">3</span>-->
+            <!--            <span class="badge badge-pill badge-warning notification">3</span>-->
         </a>
-<!--        <a href="#">-->
-<!--            <i class="fa fa-envelope"></i>-->
-<!--            <span class="badge badge-pill badge-success notification">7</span>-->
-<!--        </a>-->
-<!--        <a href="#">-->
-<!--            <i class="fa fa-cog"></i>-->
-<!--            <span class="badge-sonar"></span>-->
-<!--        </a>-->
+        <!--        <a href="#">-->
+        <!--            <i class="fa fa-envelope"></i>-->
+        <!--            <span class="badge badge-pill badge-success notification">7</span>-->
+        <!--        </a>-->
+        <!--        <a href="#">-->
+        <!--            <i class="fa fa-cog"></i>-->
+        <!--            <span class="badge-sonar"></span>-->
+        <!--        </a>-->
         <a href="<?php echo admin_url('admin/logout') ?>">
             <i class="fa fa-power-off"></i>
         </a>
@@ -85,7 +86,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputRetypePassUser" class="col-form-label">Nhập lại mật khẩu mới:</label>
-                        <input _autocheck="true" id="inputRetypePassUser" type="password" class="form-control" >
+                        <input _autocheck="true" id="inputRetypePassUser" type="password" class="form-control">
                         <span class="autocheck" name="name_autocheck"></span>
                         <div class="clear error" name="name_error"><?php echo form_error('inputRetypePassUser') ?></div>
                     </div>
@@ -100,13 +101,13 @@
 </div>
 
 <script>
-    $(function() {
+    $(function () {
         $('#changePassword-modal').on('hidden.bs.modal', function (e) {
             $("#resultSubmitUser").html("")
             $(this).find("input").val('')
         })
 
-        $('#password-tag-form-submit').on('click', function(e) {
+        $('#password-tag-form-submit').on('click', function (e) {
             e.preventDefault();
 
             $.ajax({
@@ -131,7 +132,7 @@
                 }, error: function () {
                     $("#spinner").hide();
                     $("#resultSubmitUser").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                },timeout : 20000
+                }, timeout: 20000
             });
             return false;
         });
@@ -150,7 +151,7 @@
                     }
                 },
                 callback: function (result) {
-                    if(result) {
+                    if (result) {
                         window.location = "<?php echo admin_url('admin/logout')?>";
                     }
                 }

@@ -11,6 +11,7 @@
 <link type="text/javascript" href="<?php echo public_url() ?>/bootstrap/js/bootstrap.js">
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="<?php echo public_url() ?>/site/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo public_url()?>/site/css/oem.css" media="screen" />
 <script type="text/javascript">
 	var admin_url 	= '';
 	var base_url 	= '';

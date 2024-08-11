@@ -584,6 +584,7 @@
                     list_data = result
                     $("#resultsearch").html("");
                     var totalPage = Math.floor(total / page_size) + (total % page_size ? 1 : 0);
+                    console.log(totalPage)
                     stt = 1;
 
                     $.each(list_data, function (index, value) {

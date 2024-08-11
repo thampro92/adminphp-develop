@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-sm-2">
                             </div>
-                            <label class="col-sm-1 control-label" for="exampleInputEmail1">Giftcode</label>
+                            <label class="col-sm-1 control-label text-right" for="exampleInputEmail1">Giftcode</label>
 
                             <div class="col-sm-2">
                                 <select class="form-control" id="money" name="money">
@@ -40,9 +40,9 @@
                         <div class="row">
                             <div class="col-sm-2">
                             </div>
-                            <label id="labelvin" class="col-sm-1 control-label">Mệnh giá</label>
+                            <label id="labelvin" class="col-sm-2 control-label text-right">Mệnh giá</label>
 
-                            <div class="col-sm-2" id="menhgiavin">
+                            <div class="col-sm-2" id="menhgiavin" style="padding: 0">
                                 <select name="menhgiavin" class="form-control" id="roomvin">
                                     <?php foreach($listvin as $key => $row): ?>
                                         <option value="<?php echo $row ?>"><?php echo $row."K" ?></option>
@@ -63,32 +63,32 @@
                         <div class="row">
                             <div class="col-sm-2">
                             </div>
-                            <label class="col-sm-1 control-label">Số lượng:</label>
+                            <label class="col-sm-2 control-label text-right">Số lượng:</label>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-2" style="padding: 0">
                                 <input type="text" class="form-control" id="soluong">
                             </div>
-                            <label class="col-sm-2" id="errorsl" style="color: red"></label>
+                            <label class="col-sm-2 text-left" id="errorsl" style="color: red"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-2">
                             </div>
-                            <label class="col-sm-1 control-label">Tên chiến dịch:</label>
+                            <label class="col-sm-2 control-label text-right">Tên chiến dịch:</label>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-2" style="padding: 0">
                                 <input type="text" class="form-control" id="camp">
                             </div>
-                            <label class="col-sm-2" id="errorsl" style="color: red"></label>
+                            <label class="col-sm-2 text-left" id="errorsl" style="color: red"></label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-2"></div>
-                            <label class="col-sm-1 control-label" for="datetimepicker1">Hạn sử dụng:</label>
-                            <div class="col-sm-2 input-group" id="datetimepicker1">
+                            <label class="col-sm-2 control-label text-right" for="datetimepicker1">Hạn sử dụng:</label>
+                            <div class="col-sm-2 input-group  text-left" id="datetimepicker1"  style="padding: 0">
                                 <input class="form-control" type="text" id="endTime" name="endTime"
                                        value="<?php echo $this->input->post('endTime') ?>"> <span
                                         class="input-group-addon">
@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-sm-2">
                             </div>
-                            <label class="col-sm-1 control-label">Đợt phát hành:</label>
+                            <label class="col-sm-2 control-label text-right">Đợt phát hành:</label>
 
                             <div class="col-sm-2">
                                 <select id="phathanh" class="form-control">
@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                             </div>
-                            <div class="col-sm-1"><input type="submit" value="Thêm giftcode" name="submit"
+                            <div class="col-sm-2"><input type="submit" value="Thêm giftcode" name="submit"
                                                          class="btn btn-primary pull-left" id="search_tran"></div>
                             <div class="col-sm-1"><input type="reset" value="Reset" name="submit"
                                                          class="btn btn-primary pull-left" id="reset"
