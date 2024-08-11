@@ -1,0 +1,9 @@
+# Ignore Gradle project-specific cache directory
+.idea
+.git
+application/config/database.php
+application/config/config.php
+# Ignore Gradle build output directory
+temp
+vendor/mikey179
+application/logs
