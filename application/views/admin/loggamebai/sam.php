@@ -27,7 +27,7 @@
                 </div>
                 <form class="list_filter form" action="<?php echo admin_url('loggamebai/sam') ?>" method="post">
                     <div class="formRow row">
-                        <div class="col-sm-1">
+                        <div class="col-sm-2 text-right">
                             <label for="param_name" class="formLeft">Từ ngày:</label>
                         </div>
                         <div class="col-sm-2">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-1">
+                        <div class="col-sm-2 text-right">
                             <label for="param_name" class="formLeft">Đến ngày:</label>
                         </div>
                         <div class="col-sm-2">
@@ -52,21 +52,22 @@
                         </div>
                     </div>
                     <div class="formRow row">
-                        <div class="col-sm-1">
+                        <div class="col-sm-2 text-right">
                             <label class="session-1">Tran id:</label>
                         </div>
                         <div class="col-sm-2">
                             <input class="session-2" type="text" id="tranId" value="<?php echo $this->input->post('tranId') ?>" name="tranId">
                         </div>
 
-                        <div class="col-sm-1">
+                        <div class="col-sm-2 text-right">
                             <label class="session-1" >Nick name:</label>
                         </div>
                         <div class="col-sm-2">
                             <input class="session-2" type="text" id="filter_iname" value="<?php echo $this->input->post('name') ?>" name="name">
                         </div>
-
-                        <div class="col-sm-1">
+                    </div>
+                    <div class="formRow row">
+                        <div class="col-sm-2 text-right">
                             <label class="session-1" >Loại tiền:</label>
                         </div>
                         <div class="col-sm-2">
@@ -74,10 +75,10 @@
                         </div>
                     </div>
                     <div class="formRow row">
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <input type="submit" id="search_tran" value="Tìm kiếm" class="button blueB search">
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <input type="reset"
                                    onclick="window.location.href = '<?php echo admin_url('loggamebai/sam') ?>'; "
                                    value="Reset" class="basic">

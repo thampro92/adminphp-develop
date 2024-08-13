@@ -1,6 +1,6 @@
 <?php
 
-Class Logminigame extends MY_Controller
+class Logminigame extends MY_Controller
 {
     function __construct()
     {
@@ -39,12 +39,14 @@ Class Logminigame extends MY_Controller
         $fromDate = $this->input->post("fromDate");
         $money = $this->input->post("money");
         $pages = $this->input->post("pages");
-       // $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=137&rid=' . $phientx . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+        // $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=137&rid=' . $phientx . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
 
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=204&referenceId=' . $phientx . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
+//        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=204&referenceId=' . $phientx . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
 
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->lichsutaixiu($phientx, $fromDate, $toDate, $money, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
@@ -77,10 +79,12 @@ Class Logminigame extends MY_Controller
         $fromDate = $this->input->post("fromDate");
         $money = $this->input->post("money");
         $pages = $this->input->post("pages");
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=104&referenceId=' . $phientx . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
+        //$datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=104&referenceId=' . $phientx . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
 
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->taixiumd5($phientx, $fromDate, $toDate, $money, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
@@ -116,13 +120,14 @@ Class Logminigame extends MY_Controller
 
 
         //http://10.40.96.10:8090/game/service/cms?c=206&page=1&nn=&referenceId=436625&bet_side=-1&fd=2023-01-07&td=2023-01-07
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=1041&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat . '&td=' . $toDate, '8090');
-
+//        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=1041&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat . '&td=' . $toDate, '8090');
 
 
         //$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=505&rid=' . $phientx . '&nn=' . $nickname . '&bs=' . $cuadat . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages.'&ib='.$bot_type);
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->accounttaixiumd5($phientx, $fromDate, $toDate, $nickname, $cuadat, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
@@ -131,7 +136,7 @@ Class Logminigame extends MY_Controller
     function detailphientaixiumd5()
     {
         $phien = $this->uri->rsegment('3');
-        $fromDate =  $this->input->get("fromDate");
+        $fromDate = $this->input->get("fromDate");
         $uriParam = $this->uri->rsegment('4');
         $this->data['phien'] = $phien;
         $this->data['fromDate'] = $fromDate;
@@ -163,11 +168,8 @@ Class Logminigame extends MY_Controller
         $pages = $this->input->post("pages");
 
 
- 
-
         //http://10.40.96.10:8090/game/service/cms?c=205&page=1&nn=&referenceId=436625&bet_side=-1&fd=2023-01-07
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=1042&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat, '8090');
-
+        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=1042&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' . $cuadat, '8090');
 
 
         if (isset($datainfo)) {
@@ -179,7 +181,8 @@ Class Logminigame extends MY_Controller
     }
 
 
-    function sendGet($url, $port){
+    function sendGet($url, $port)
+    {
 
 
         $curl = curl_init();
@@ -234,6 +237,7 @@ Class Logminigame extends MY_Controller
         canMenu('logminigame/accounttaixiu');
         $phientx = urlencode($this->input->post("phientx"));
         $nickname = urlencode($this->input->post("nickname"));
+        $botType = $this->input->post("bot_type");
         $cuadat = $this->input->post("cuadat");
         $toDate = $this->input->post("toDate");
         $fromDate = $this->input->post("fromDate");
@@ -241,13 +245,14 @@ Class Logminigame extends MY_Controller
 
 
         //http://10.40.96.10:8090/game/service/cms?c=206&page=1&nn=&referenceId=436625&bet_side=-1&fd=2023-01-07&td=2023-01-07
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=206&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat . '&td=' . $toDate, '8090');
-
+//        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=206&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat . '&td=' . $toDate, '8090');
 
 
         //$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=505&rid=' . $phientx . '&nn=' . $nickname . '&bs=' . $cuadat . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages.'&ib='.$bot_type);
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->accounttaixiu($phientx, $botType, $fromDate, $toDate, $nickname, $cuadat, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
@@ -442,7 +447,7 @@ Class Logminigame extends MY_Controller
     function detailphientaixiu()
     {
         $phien = $this->uri->rsegment('3');
-        $fromDate =  $this->input->get("fromDate");
+        $fromDate = $this->input->get("fromDate");
         $uriParam = $this->uri->rsegment('4');
         $this->data['phien'] = $phien;
         $this->data['fromDate'] = $fromDate;
@@ -475,8 +480,7 @@ Class Logminigame extends MY_Controller
 
 
         //http://10.40.96.10:8090/game/service/cms?c=205&page=1&nn=&referenceId=436625&bet_side=-1&fd=2023-01-07
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=205&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' .$cuadat, '8090');
-
+        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=205&referenceId=' . $phientx . '&fd=' . ($fromDate) . '&page=' . $pages . '&nn=' . $nickname . '&bet_side=' . $cuadat, '8090');
 
 
         if (isset($datainfo)) {
@@ -536,14 +540,16 @@ Class Logminigame extends MY_Controller
         $fromDate = $this->input->post("fromDate");
         $money = $this->input->post("money");
         $pages = $this->input->post("pages");
-        if ($money == 1) {
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=504&nn=' . $nickname . '&r=' . $roomvin . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
-        } else if ($money == 0) {
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=504&nn=' . $nickname . '&r=' . $roomxu . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
-        }
+//        if ($money == 1) {
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=504&nn=' . $nickname . '&r=' . $roomvin . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+//        } else if ($money == 0) {
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=504&nn=' . $nickname . '&r=' . $roomxu . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+//        }
 
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->logminipoker($fromDate, $toDate, $nickname, $roomvin, $roomxu, $money, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
@@ -555,24 +561,26 @@ Class Logminigame extends MY_Controller
         $this->data['temp'] = 'admin/logminigame/logpokego';
         $this->load->view('admin/main', $this->data);
     }
-    function logpokegoajax(){
+
+    function logpokegoajax()
+    {
         $phienbc = urlencode($this->input->post("phienbc"));
         $nickname = urlencode($this->input->post("nickname"));
-        $roomvin =  $this->input->post("roomvin");
-        $roomxu =  $this->input->post("roomxu");
+        $roomvin = $this->input->post("roomvin");
+        $roomxu = $this->input->post("roomxu");
         $toDate = $this->input->post("toDate");
         $fromDate = $this->input->post("fromDate");
         $money = $this->input->post("money");
         $pages = $this->input->post("pages");
-        if($money == 1){
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2').'?c=121&un='.$nickname.'&rid='.$phienbc.'&bv='.$roomvin.'&ts='.urlencode($toDate).'&te='.urlencode($fromDate).'&mt='.$money.'&p='.$pages);
-        }else if($money == 0){
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2').'?c=121&un='.$nickname.'&rid='.$phienbc.'&bv='.$roomxu.'&ts='.urlencode($toDate).'&te='.urlencode($fromDate).'&mt='.$money.'&p='.$pages);
+        if ($money == 1) {
+            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=121&un=' . $nickname . '&rid=' . $phienbc . '&bv=' . $roomvin . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+        } else if ($money == 0) {
+            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=121&un=' . $nickname . '&rid=' . $phienbc . '&bv=' . $roomxu . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
         }
 
-        if(isset($datainfo)) {
+        if (isset($datainfo)) {
             echo $datainfo;
-        }else{
+        } else {
             echo "Bạn không được hack";
         }
 
@@ -594,13 +602,14 @@ Class Logminigame extends MY_Controller
         $toDate = $this->input->post("toDate");
         $fromDate = $this->input->post("fromDate");
         $pages = $this->input->post("pages");
-        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=119&rid=' . $phienbc . '&r=' . $room . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages);
-        if (isset($datainfo)) {
-            echo $datainfo;
+        //$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=119&rid=' . $phienbc . '&r=' . $room . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages);
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->logphienbaucua($phienbc, $room, $fromDate, $toDate, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
-
     }
 
     function logbaucua()
@@ -621,18 +630,19 @@ Class Logminigame extends MY_Controller
         $fromDate = $this->input->post("fromDate");
         $money = $this->input->post("money");
         $pages = $this->input->post("pages");
-        if ($money == 1) {
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=501&nn=' . $nickname . '&rid=' . $phienbc . '&r=' . $roomvin . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
-        } else if ($money == 0) {
-            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=501&nn=' . $nickname . '&rid=' . $phienbc . '&r=' . $roomxu . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
-        }
+//        if ($money == 1) {
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=501&nn=' . $nickname . '&rid=' . $phienbc . '&r=' . $roomvin . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+//        } else if ($money == 0) {
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=501&nn=' . $nickname . '&rid=' . $phienbc . '&r=' . $roomxu . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&mt=' . $money . '&p=' . $pages);
+//        }
 
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/logminigame_model");
+            $rs = $this->logminigame_model->logbaucua($phienbc, $nickname, $roomvin, $roomxu, $money, $fromDate, $toDate, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }
-
     }
 
     function detailbaucua()

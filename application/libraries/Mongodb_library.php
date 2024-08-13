@@ -13,7 +13,7 @@ class Mongodb_library
     protected $collection;
     protected $CI = '';
 
-    public function __construct()
+    public function __construct($db_name = null)
     {
         // Load MongoDB configuration from the config file
         $this->CI = &get_instance();
@@ -22,7 +22,13 @@ class Mongodb_library
 
         // Connect to MongoDB
         $this->client = new Client($config['connection_string']);
-        $this->db = $this->client->{$config['database']};
+        $this->db = $this->client->{$db_name ?: $config['database']};
+    }
+
+    public function selectDatabase($db_name)
+    {
+        // Switch to a different database
+        $this->db = $this->client->{$db_name};
     }
 
     public function selectCollection($collection)

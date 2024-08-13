@@ -194,7 +194,7 @@
                                         fromDate  : $("#fromDate").val(),
                                         toDate : $("#toDate").val(),
                                         money: $("#money_type").val(),
-                                        pages : 1
+                                        pages : page
                                     },
                                     dataType: 'json',
                                     success: function (result) {

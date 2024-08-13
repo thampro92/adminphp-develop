@@ -231,6 +231,7 @@
                         totalPages: totalPage,
                         visiblePages: 5,
                         onPageClick: function (event, page) {
+                            console.log()
                             if (oldPage > 0) {
                                 $("#spinner").show();
                                 $.ajax({

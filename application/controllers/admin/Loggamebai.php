@@ -32,7 +32,6 @@ class Loggamebai extends MY_Controller
     }
 
 
-
     function loggame()
     {
         canMenu('loggamebai/loggame');
@@ -51,11 +50,11 @@ class Loggamebai extends MY_Controller
         $sid = urlencode($this->input->post("sid"));
         $money = urlencode($this->input->post("money"));
 
-        if( $namegame =="rongho"){
+        if ($namegame == "rongho") {
 
 
             //http://10.40.96.10:8090/game/service/cms?c=301&page=1&referenceId=0&fd=1675357200&td=1675443599
-            $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=301&referenceId=' . $sid . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
+            $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=301&referenceId=' . $sid . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
 
 
             if (isset($datainfo)) {
@@ -66,7 +65,7 @@ class Loggamebai extends MY_Controller
             return;
         }
 
-        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode( $fromDate) . '&te=' . urlencode($toDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
+        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($fromDate) . '&te=' . urlencode($toDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
 
         if (isset($datainfo)) {
             echo $datainfo;
@@ -101,8 +100,7 @@ class Loggamebai extends MY_Controller
         $time = $this->input->post("time");
         $sid = $this->input->post("sid");
         //http://10.40.96.10:8090/game/service/cms?c=302&referenceId=16373&fd=03-02-2023
-        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms'. '?c=302&referenceId=' . $sid . '&fd=' . urlencode($time), '8090');
-
+        $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=302&referenceId=' . $sid . '&fd=' . urlencode($time), '8090');
 
 
         if (isset($datainfo)) {
@@ -113,7 +111,8 @@ class Loggamebai extends MY_Controller
         return;
     }
 
-    function sendGet($url, $port){
+    function sendGet($url, $port)
+    {
 
 
         $curl = curl_init();
@@ -272,110 +271,118 @@ class Loggamebai extends MY_Controller
     }
 
 
+    function bacay()
+    {
+        canMenu('loggamebai/bacay');
+        $this->data['temp'] = 'admin/loggamebai/bacay';
+        $this->load->view('admin/main', $this->data);
+    }
 
-			function bacay()
-			{
-					canMenu('loggamebai/bacay');
-					$this->data['temp'] = 'admin/loggamebai/bacay';
-					$this->load->view('admin/main', $this->data);
-			}
+    function bacayajax()
+    {
+        canMenu('loggamebai/bacay');
+        $nickname = urlencode($this->input->post("nickname"));
+        $namegame = "BaCay";
+        $pages = $this->input->post("pages");
+        $toDate = $this->input->post("toDate");
+        $fromDate = $this->input->post("fromDate");
+        $sid = urlencode($this->input->post("sid"));
+        $money = urlencode($this->input->post("money"));
+        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
+        if (isset($datainfo)) {
+            echo $datainfo;
+        } else {
+            echo "Bạn không được hack";
+        }
+    }
 
-			function bacayajax()
-			{
-					canMenu('loggamebai/bacay');
-					$nickname = urlencode($this->input->post("nickname"));
-					$namegame = "BaCay";
-					$pages = $this->input->post("pages");
-					$toDate = $this->input->post("toDate");
-					$fromDate = $this->input->post("fromDate");
-					$sid = urlencode($this->input->post("sid"));
-					$money = urlencode($this->input->post("money"));
-					$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
-					if (isset($datainfo)) {
-							echo $datainfo;
-					} else {
-							echo "Bạn không được hack";
-					}
-			}
+    function sam()
+    {
+        canMenu('loggamebai/sam');
+        $this->data['temp'] = 'admin/loggamebai/sam';
+        $this->load->view('admin/main', $this->data);
+    }
 
-			function sam()
-			{
-					canMenu('loggamebai/sam');
-					$this->data['temp'] = 'admin/loggamebai/sam';
-					$this->load->view('admin/main', $this->data);
-			}
+    function samajax()
+    {
+        canMenu('loggamebai/sam');
+//        $params = [
+//            'c' => 503,
+//            'nn' => $this->input->post("nickname"),
+//            'tid' => $this->input->post("tid"),
+////                    'r' => null,
+//            'ts' => $this->input->post("fromDate"),
+//            'te' => $this->input->post("toDate"),
+//            'mt' => $this->input->post("moneyType"),
+//            'p' => $this->input->post("pages"),
+//        ];
+//        $url = $this->config->item('api_backend2') . '?' . http_build_query($params);
+//        $datainfo = $this->get_data_curl($url);
 
-			function samajax()
-			{
-                canMenu('loggamebai/sam');
-                $params = [
-                    'c' => 503,
-                    'nn' => $this->input->post("nickname"),
-                    'tid' => $this->input->post("tid"),
-//                    'r' => null,
-                    'ts' => $this->input->post("fromDate"),
-                    'te' => $this->input->post("toDate"),
-                    'mt' => $this->input->post("moneyType"),
-                    'p' => $this->input->post("pages"),
-                ];
-                $url = $this->config->item('api_backend2') . '?' . http_build_query($params);
-					$datainfo = $this->get_data_curl($url);
-					if (isset($datainfo)) {
-							echo $datainfo;
-					} else {
-							echo "Bạn không được hack";
-					}
-			}
+        $nickname = $this->input->post("nickname");
+        $transid = $this->input->post("tid");
+        $fromDate = $this->input->post("fromDate");
+        $toDate = $this->input->post("toDate");
+        $pages = $this->input->post("pages");
+        $moneyType = $this->input->post("moneyType");
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/loggamebai_model");
+            $rs = $this->loggamebai_model->loggamebaisam($transid, $nickname, $fromDate, $toDate, $moneyType, $pages);
+            echo json_encode($rs);
+        } else {
+            echo "Bạn không được hack";
+        }
+    }
 
-			function binh()
-			{
-					canMenu('loggamebai/binh');
-					$this->data['temp'] = 'admin/loggamebai/binh';
-					$this->load->view('admin/main', $this->data);
-			}
+    function binh()
+    {
+        canMenu('loggamebai/binh');
+        $this->data['temp'] = 'admin/loggamebai/binh';
+        $this->load->view('admin/main', $this->data);
+    }
 
-			function binhajax()
-			{
-					canMenu('loggamebai/binh');
-					$nickname = urlencode($this->input->post("nickname"));
-					$namegame = "XocDia";
-					$pages = $this->input->post("pages");
-					$toDate = $this->input->post("toDate");
-					$fromDate = $this->input->post("fromDate");
-					$sid = urlencode($this->input->post("sid"));
-					$money = urlencode($this->input->post("money"));
-					$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
-					if (isset($datainfo)) {
-							echo $datainfo;
-					} else {
-							echo "Bạn không được hack";
-					}
-			}
+    function binhajax()
+    {
+        canMenu('loggamebai/binh');
+        $nickname = urlencode($this->input->post("nickname"));
+        $namegame = "XocDia";
+        $pages = $this->input->post("pages");
+        $toDate = $this->input->post("toDate");
+        $fromDate = $this->input->post("fromDate");
+        $sid = urlencode($this->input->post("sid"));
+        $money = urlencode($this->input->post("money"));
+        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
+        if (isset($datainfo)) {
+            echo $datainfo;
+        } else {
+            echo "Bạn không được hack";
+        }
+    }
 
-			function tlmn()
-			{
-					canMenu('loggamebai/tlmn');
-					$this->data['temp'] = 'admin/loggamebai/tlmn';
-					$this->load->view('admin/main', $this->data);
-			}
+    function tlmn()
+    {
+        canMenu('loggamebai/tlmn');
+        $this->data['temp'] = 'admin/loggamebai/tlmn';
+        $this->load->view('admin/main', $this->data);
+    }
 
-			function tlmnajax()
-			{
-					canMenu('loggamebai/tlmn');
-					$nickname = urlencode($this->input->post("nickname"));
-					$namegame = "Tlmn";
-					$pages = $this->input->post("pages");
-					$toDate = $this->input->post("toDate");
-					$fromDate = $this->input->post("fromDate");
-					$sid = urlencode($this->input->post("sid"));
-					$money = urlencode($this->input->post("money"));
-					$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
-					if (isset($datainfo)) {
-							echo $datainfo;
-					} else {
-							echo "Bạn không được hack";
-					}
-			}
+    function tlmnajax()
+    {
+        canMenu('loggamebai/tlmn');
+        $nickname = urlencode($this->input->post("nickname"));
+        $namegame = "Tlmn";
+        $pages = $this->input->post("pages");
+        $toDate = $this->input->post("toDate");
+        $fromDate = $this->input->post("fromDate");
+        $sid = urlencode($this->input->post("sid"));
+        $money = urlencode($this->input->post("money"));
+        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
+        if (isset($datainfo)) {
+            echo $datainfo;
+        } else {
+            echo "Bạn không được hack";
+        }
+    }
 
     function detail()
     {
