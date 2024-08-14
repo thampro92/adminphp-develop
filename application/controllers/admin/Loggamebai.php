@@ -50,25 +50,27 @@ class Loggamebai extends MY_Controller
         $sid = urlencode($this->input->post("sid"));
         $money = urlencode($this->input->post("money"));
 
-        if ($namegame == "rongho") {
+//        if ($namegame == "rongho") {
+//
+//
+//            //http://10.40.96.10:8090/game/service/cms?c=301&page=1&referenceId=0&fd=1675357200&td=1675443599
+//            $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=301&referenceId=' . $sid . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
+//
+//
+//            if (isset($datainfo)) {
+//                echo $datainfo;
+//            } else {
+//                echo "Bạn không được hack";
+//            }
+//            return;
+//        }
+//
+//        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($fromDate) . '&te=' . urlencode($toDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
 
-
-            //http://10.40.96.10:8090/game/service/cms?c=301&page=1&referenceId=0&fd=1675357200&td=1675443599
-            $datainfo = $this->sendGet('http://10.40.96.10:8090/game/service/cms' . '?c=301&referenceId=' . $sid . '&td=' . urlencode($toDate) . '&fd=' . urlencode($fromDate) . '&mt=' . $money . '&page=' . $pages, '8090');
-
-
-            if (isset($datainfo)) {
-                echo $datainfo;
-            } else {
-                echo "Bạn không được hack";
-            }
-            return;
-        }
-
-        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=2&nn=' . $nickname . '&gn=' . $namegame . '&ts=' . urlencode($fromDate) . '&te=' . urlencode($toDate) . '&p=' . $pages . '&sid=' . $sid . '&mt=' . $money);
-
-        if (isset($datainfo)) {
-            echo $datainfo;
+        if ($this->input->is_ajax_request()) {
+            $this->load->model("admin/Loggamebai_model");
+            $rs = $this->Loggamebai_model->loggame($fromDate, $toDate, $nickname, $namegame, $sid, $money, $pages);
+            echo json_encode($rs);
         } else {
             echo "Bạn không được hack";
         }

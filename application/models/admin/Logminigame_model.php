@@ -413,11 +413,11 @@ class Logminigame_model extends MY_Model
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($this->table5);
 
-//        $fromDate = "2022-09-13";
-//        $toDate = "2022-09-13";
+//        $fromDate = "2022-09-13 00:00:00";
+//        $toDate = "2022-09-13 23:59:59";
 
-        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . 'T00:00:00.000+0000') * 1000);
-        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . 'T23:59:59.000+0000') * 1000); // Midnight of the next day
+        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . '+0000') * 1000);
+        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . '+0000') * 1000); // Midnight of the next day
 
         $page = intval($pages);
         $maxItem = 50;
@@ -497,11 +497,11 @@ class Logminigame_model extends MY_Model
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($this->table6);
 
-//        $fromDate = "2022-11-19";
-//        $toDate = "2023-07-03";
+//        $fromDate = "2022-11-19 00:00:00";
+//        $toDate = "2023-07-03 23:59:59";
 
-        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . 'T00:00:00.000+0000') * 1000);
-        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . 'T23:59:59.000+0000') * 1000); // Midnight of the next day
+        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . '+0000') * 1000);
+        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . '+0000') * 1000); // Midnight of the next day
 
         $page = intval($pages);
         $maxItem = 50;
@@ -600,11 +600,11 @@ class Logminigame_model extends MY_Model
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($this->table7);
 
-//        $fromDate = "2022-10-16";
-//        $toDate = "2023-01-03";
+//        $fromDate = "2022-10-16 00:00:00";
+//        $toDate = "2023-01-03 23:59:59";
 
-        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . 'T00:00:00.000+0000') * 1000);
-        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . 'T23:59:59.000+0000') * 1000); // Midnight of the next day
+        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . '+0000') * 1000);
+        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . '+0000') * 1000); // Midnight of the next day
 
         $page = intval($pages);
         $maxItem = 50;

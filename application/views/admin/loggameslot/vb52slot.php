@@ -34,13 +34,15 @@
                         <tr>
                             <td><label class="money-type-1" style="margin-left: 7px">Slot:</label></td>
                             <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="game" name="game">
-                                    <option value="xeng777" <?php if($this->input->post('game') == "xeng777"){echo "selected";} ?>>Xèng 777</option>
+                                    <!-- <option value="xeng777" <?php if($this->input->post('game') == "xeng777"){echo "selected";} ?>>Xèng 777</option>
                                     <option value="raya" <?php if($this->input->post('game') == "raya"){echo "selected";} ?>>Raya</option>
                                     <option value="duoluo" <?php if($this->input->post('game') == "duoluo"){echo "selected";} ?>>Duo luo</option>
                                     <option value="tinkerbell" <?php if($this->input->post('game') == "tinkerbell"){echo "selected";} ?>>Tinker Bell</option>
                                     <option value="moana" <?php if($this->input->post('game') == "moana"){echo "selected";} ?>>Moana</option>
                                     <option value="spiesdisguise" <?php if($this->input->post('game') == "spiesdisguise"){echo "selected";} ?>>Spies Disguise</option>
-                                    <option value="alita" <?php if($this->input->post('game') == "alita"){echo "selected";} ?>>Alita</option>
+                                    <option value="alita" <?php if($this->input->post('game') == "alita"){echo "selected";} ?>>Alita</option> -->
+                                    <option value="minislot1" <?php if($this->input->post('game') == "minislot1"){echo "selected";} ?>>Xeng777</option>
+                                    <option value="minislot2" <?php if($this->input->post('game') == "minislot2"){echo "selected";} ?>>Minion</option>
                                 </select></td>
                         </tr>
                     </table>
@@ -278,6 +280,7 @@
 
     function resultSearchTransction(stt, value) {
         var rs = "";
+        value.create_time = parseInt(value.create_time);
         let date = new Date(value.create_time);
         rs += "<tr>";
         rs += "<td>" + stt + "</td>";

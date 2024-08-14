@@ -48,10 +48,12 @@
                 $gametype = 180;
             }
 
-            $datainfo = $this->get_data_curl($this->config->item('api_backend').'?c=516&nn='.$nickName. '&tid='.$transId. '&r='.$bet_value . '&ts=' .$fromDate . '&te=' . $toDate. '&gameType='.$gametype.'&p='.$page.'&game=vb');
-            if(isset($datainfo)) {
-                echo $datainfo;
-            }else{
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend').'?c=516&nn='.$nickName. '&tid='.$transId. '&r='.$bet_value . '&ts=' .$fromDate . '&te=' . $toDate. '&gameType='.$gametype.'&p='.$page.'&game=vb');
+            if ($this->input->is_ajax_request()) {
+                $this->load->model("admin/loggameslot_model");
+                $rs = $this->loggameslot_model->vb52slot($game, $fromDate, $toDate, $transId, $bet_value, $nickName, $page);
+                echo json_encode($rs);
+            } else {
                 echo "Bạn không được hack";
             }
         }
@@ -94,13 +96,12 @@
                 $gametype = 198;
             }
 
-
-
-
-            $datainfo = $this->get_data_curl($this->config->item('api_backend').'?c=516&nn='.$nickName. '&tid='.$transId. '&r='.$bet_value . '&ts=' .$fromDate . '&te=' . $toDate. '&gameType='.$gametype.'&p='.$page.'&game=lux');
-            if(isset($datainfo)) {
-                echo $datainfo;
-            }else{
+//            $datainfo = $this->get_data_curl($this->config->item('api_backend').'?c=516&nn='.$nickName. '&tid='.$transId. '&r='.$bet_value . '&ts=' .$fromDate . '&te=' . $toDate. '&gameType='.$gametype.'&p='.$page.'&game=lux');
+            if ($this->input->is_ajax_request()) {
+                $this->load->model("admin/loggameslot_model");
+                $rs = $this->loggameslot_model->lux52slot($game, $fromDate, $toDate, $transId, $bet_value, $nickName, $page);
+                echo json_encode($rs);
+            } else {
                 echo "Bạn không được hack";
             }
         }

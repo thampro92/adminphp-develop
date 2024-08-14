@@ -4,34 +4,37 @@ class Loggamebai_model extends MY_Model
 {
     var $coreDB = "DBCoreLog";
     var $table1 = 'log_cao_thap';
+    var $table2 = 'rong_ho_results';
+    var $table3 = 'rong_ho_transactions';
 
-    function loggamebaisam($transid, $nickname, $fromDate, $toDate, $moneyType, $pages){
+    function loggamebaisam($transid, $nickname, $fromDate, $toDate, $moneyType, $pages)
+    {
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($this->table1);
 
-//        $fromDate = "2022-09-19";
-//        $toDate = "2022-09-19";
+//        $fromDate = "2022-09-12 00:00:00";
+//        $toDate = "2022-09-19 23:59:59";
 
-        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . 'T00:00:00.000+0000') * 1000);
-        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . 'T23:59:59.000+0000') * 1000); // Midnight of the next day
+        $startTime = new MongoDB\BSON\UTCDateTime(strtotime($fromDate . '+0000') * 1000);
+        $endTime = new MongoDB\BSON\UTCDateTime(strtotime($toDate . '+0000') * 1000); // Midnight of the next day
 
         $page = intval($pages);
         $maxItem = 50;
 
         $projection = [
             "_id" => 0,
-            "tran_id"=> '$trans_id',
-            "nickName"=> '$nick_name',
-            "pot_bet"=> 1,
-            "step"=> 1,
-            "bet_value"=> 1,
-            "result"=>1,
-            "prize"=> 1,
-            "cards"=> 1,
-            "current_pot"=> 1,
-            "current_fund"=> 1,
-            "money_type"=> 1,
-            "time_log"=> 1
+            "tran_id" => '$trans_id',
+            "nickName" => '$nick_name',
+            "pot_bet" => 1,
+            "step" => 1,
+            "bet_value" => 1,
+            "result" => 1,
+            "prize" => 1,
+            "cards" => 1,
+            "current_pot" => 1,
+            "current_fund" => 1,
+            "money_type" => 1,
+            "time_log" => 1
         ];
 
         $options = [
@@ -53,7 +56,7 @@ class Loggamebai_model extends MY_Model
             $conds[] = ['nick_name' => $nickname];
         }
 
-        if(strlen($moneyType) && intval($moneyType)){
+        if (strlen($moneyType) && intval($moneyType)) {
             $conds[] = ['money_type' => intval($moneyType)];
         }
 
@@ -97,5 +100,10 @@ class Loggamebai_model extends MY_Model
             'totalRecord' => $total,
             'transactions' => $results
         ];
+    }
+
+    function loggame($fromDate, $toDate, $nickname, $namegame, $sid, $money, $pages)
+    {
+
     }
 }

@@ -30,7 +30,7 @@
             <form class="list_filter form" action="<?php echo admin_url('loggameslot/lux52slot') ?>" method="post">
 
                 <div class="formRow">
-                    <table>
+                    <!-- <table>
                         <tr>
                             <td><label class="money-type-1" style="margin-left: 7px">Slot:</label></td>
                             <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="game" name="game">
@@ -41,7 +41,19 @@
                                     <option value="spiderman" <?php if($this->input->post('game') == "spiderman"){echo "selected";} ?>>Spider Man</option>
                                     <option value="xeng777" <?php if($this->input->post('game') == "xeng777"){echo "selected";} ?>>Xèng 777</option>
                                     <option value="diamond" <?php if($this->input->post('game') == "diamond"){echo "selected";} ?>>Diamond</option>
- 
+
+                                </select></td>
+                        </tr>
+                    </table> -->
+                    <table>
+                        <tr>
+                            <td><label class="money-type-1" style="margin-left: 7px">Slot:</label></td>
+                            <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="game" name="game">
+                                    <option value="slot1" <?php if($this->input->post('game') == "slot1"){echo "selected";} ?>>Lion King</option>
+                                    <option value="slot2" <?php if($this->input->post('game') == "slot2"){echo "selected";} ?>>Scooby Doo</option>
+                                    <option value="slot3" <?php if($this->input->post('game') == "slot3"){echo "selected";} ?>>Street Fighter</option>
+                                    <option value="slot4" <?php if($this->input->post('game') == "slot4"){echo "selected";} ?>>White Snake</option>
+
                                 </select></td>
                         </tr>
                     </table>
@@ -277,6 +289,7 @@
 
     function resultSearchTransction(stt, value) {
         var rs = "";
+        value.create_time = parseInt(value.create_time);
         let date = new Date(value.create_time);
         rs += "<tr>";
         rs += "<td>" + stt + "</td>";
