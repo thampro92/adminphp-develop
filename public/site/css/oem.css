@@ -258,3 +258,17 @@ thead td {
 label {
     font-weight: normal;
 }
+
+.horControlB ul li a {
+    background: #FFF;
+}
+
+.input-group input#fromDate,
+.input-group input#toDate {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.form input.session-2 {
+    width: 206px;
+}
