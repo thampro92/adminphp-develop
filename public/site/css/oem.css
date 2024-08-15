@@ -272,3 +272,7 @@ label {
 .form input.session-2 {
     width: 206px;
 }
+
+.btn {
+    border-radius: 100px;
+}
