@@ -172,8 +172,8 @@
 
     });
     $("#search_tran").click(function () {
-        var fromDatetime = $("#toDate").val();
-        var toDatetime = $("#fromDate").val();
+        var fromDatetime = $("#fromDate").val();
+        var toDatetime = $("#toDate").val();
         if (fromDatetime > toDatetime) {
             alert('Ngày kết thúc phải lớn hơn ngày bắt đầu')
             return false;
