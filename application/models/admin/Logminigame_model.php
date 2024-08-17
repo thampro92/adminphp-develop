@@ -429,6 +429,7 @@ class Logminigame_model extends MY_Model
             'min_bet_value' => 1,
             'dice1' => 1,
             'dice2' => 1,
+            'dice3' => 1,
             'x_pot' => 1,
             'x_value' => 1,
             'bet_value' => 1,
