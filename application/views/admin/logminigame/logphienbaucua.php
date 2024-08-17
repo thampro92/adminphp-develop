@@ -322,6 +322,9 @@
             case 5:
                 strresult = "Hưou";
                 break;
+            default:
+                strresult = "";
+                break;
         }
         return strresult;
     }
