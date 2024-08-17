@@ -32,8 +32,8 @@
                                 <label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
                             <td class="item">
                                 <div class="input-group date" id="datetimepicker1">
-                                    <input type="text" id="fromDate" name="toDate"
-                                           value="<?php echo $this->input->post('toDate') ?>"> <span
+                                    <input type="text" id="fromDate" name="fromDate"
+                                           value="<?php echo $this->input->post('fromDate') ?>"> <span
                                             class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
 </span>
@@ -46,8 +46,8 @@
                             <td class="item">
 
                                 <div class="input-group date" id="datetimepicker2">
-                                    <input type="text" id="toDate" name="fromDate"
-                                           value="<?php echo $this->input->post('fromDate') ?>"> <span
+                                    <input type="text" id="toDate" name="toDate"
+                                           value="<?php echo $this->input->post('toDate') ?>"> <span
                                             class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
 </span>
