@@ -1,7 +1,7 @@
 <?php
 Class GroupUser_model extends MY_Model
 {
-    var $table = 'groupuser';
+    var $table = 'cms_group_user';
 
     public function getByName($name)
     {

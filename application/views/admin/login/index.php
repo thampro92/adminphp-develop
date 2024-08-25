@@ -117,6 +117,7 @@
                 },
                 dataType: 'json',
                 success: function (res) {
+                    console.log(res);
                     $("#spinner").hide();
                     //alert(res);
                     if (res == 1) {
@@ -125,7 +126,7 @@
                     } else if (res == 2) {
                         $("#validate-text").html("Tài khoản không phải là admin hoặc đại lý");
                     } else if (res == 3) {
-                        $("#validate-text").html("Hệ thống gián đoạn ");
+                        $("#validate-text").html("Hệ thống gián đoạn 2");
                     } else if (res == 4) {
                         $("#validate-text").html("Tên đăng nhập không tồn tại");
                     } else if (res == 5) {
@@ -141,7 +142,7 @@
                     }
                 }, error: function () {
                     $("#spinner").hide();
-                    alert("Hệ thống gián đoạn ");
+                    alert("Hệ thống gián đoạn 3");
                 }
             });
         }
@@ -177,7 +178,7 @@
                 } else if (res == 2) {
                     $("#validate-text").html("Tài khoản không phải là admin hoặc đại lý");
                 } else if (res == 3) {
-                    $("#validate-text").html("Hệ thống gián đoạn ");
+                    $("#validate-text").html("Hệ thống gián đoạn 1");
                 } else if (res == 4) {
                     $("#validate-text").html("Tên đăng nhập không tồn tại");
                 } else if (res == 5) {
@@ -194,7 +195,7 @@
             }, error: function (xhr, textStatus, errorThrown) {
                 console.log(xhr);
                 $("#spinner").hide();
-                alert("Hệ thống gián đoạn ");
+                alert("Hệ thống gián đoạn 22");
             }
         });
     })

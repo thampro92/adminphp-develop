@@ -34,6 +34,6 @@ class LogActionMiddleware
             'tool' => "Admin",
             'status' => 0,
         );
-        $this->ci->db->insert('log_loginadmin', $data);
+        $this->ci->db->insert('cms_log_login_admin', $data);
     }
 }

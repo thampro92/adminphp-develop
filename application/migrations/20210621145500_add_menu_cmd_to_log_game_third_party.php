@@ -6,7 +6,7 @@ class Migration_Add_menu_cmd_to_log_game_third_party extends CI_Migration
 {
     public function up()
     {
-        $data = $this->db->select('id')->where('link', 'loggamethirdparty')->where('Parrent_ID', -1)->get('menu')->row();
+        $data = $this->db->select('id')->where('link', 'loggamethirdparty')->where('Parrent_ID', -1)->get('cms_menu')->row();
         if (!$data) {
             return;
         }
@@ -20,7 +20,7 @@ class Migration_Add_menu_cmd_to_log_game_third_party extends CI_Migration
             'isDaily' => '0',
             'isSuper' => '0',
         );
-        $this->db->insert('menu', $data);
+        $this->db->insert('cms_menu', $data);
     }
 
     public function down()

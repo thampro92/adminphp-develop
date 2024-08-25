@@ -88,6 +88,7 @@ $ip != "207.148.121.203"
             $this->session->set_flashdata('message', ' Tài khoản chưa được phân quyền');
             return false;
         } else {
+
             $this->session->set_userdata('user_id_login', $user->ID);
             $this->session->set_userdata('user_name_login', $user->UserName);
             $this->session->set_userdata('nick_name_login', $nickname);
@@ -167,7 +168,6 @@ $ip != "207.148.121.203"
 
     function loginODP()
     {
-
         $ip = $this->getIPAddress();
         if(
 

@@ -1,7 +1,7 @@
 <?php
 Class Useragent_model extends MY_Model
 {
-    var $table = 'useragent';
+    var $table = 'cms_user_agent';
     function  get_info_admin($username){
 
         $this->db->where('username',$username);

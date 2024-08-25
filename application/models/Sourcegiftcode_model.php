@@ -1,7 +1,7 @@
 <?php
 Class Sourcegiftcode_model extends MY_Model
 {
-    var $table = 'source_giftcode';
+    var $table = 'cms_source_giftcode';
 
     function  get_source_gift_code_vanhanh(){
         $this->db->where('type',3);

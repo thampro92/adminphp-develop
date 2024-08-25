@@ -16,8 +16,8 @@ class Migration_Add_menu_attendance extends CI_Migration
             'isDaily' => '0',
             'isSuper' => '0',
         );
-        $this->db->insert('menu', $data);
-        $data = $this->db->select('id')->where('link', 'attendance')->where('Parrent_ID', -1)->get('menu')->row();
+        $this->db->insert('cms_menu', $data);
+        $data = $this->db->select('id')->where('link', 'attendance')->where('Parrent_ID', -1)->get('cms_menu')->row();
         if (!$data) {
             return;
         }
@@ -33,11 +33,11 @@ class Migration_Add_menu_attendance extends CI_Migration
                 'isSuper' => '0',
             ]
         ];
-        $this->db->insert_batch('menu', $data);
+        $this->db->insert_batch('cms_menu', $data);
     }
 
     public function down()
     {
-        $this->db->delete('menu', array('Link' => 'attendance'));
+        $this->db->delete('cms_menu', array('Link' => 'attendance'));
     }
 }

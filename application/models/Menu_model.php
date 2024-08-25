@@ -1,12 +1,12 @@
 <?php
 Class Menu_model extends MY_Model
 {
-    var $table = 'menu';
+    var $table = 'cms_menu';
     //get role by menu
     function  get_list_role_group_user($menu_id){
         $this->db->where('Menu_ID',$menu_id);
         $this->db->where('Parrent_ID','-1');
-        $this->db->join('rolemenu','rolemenu.Role_ID=menu.ID');
+        $this->db->join('cms_role_menu','cms_role_menu.Role_ID=cms_menu.ID');
         $query = $this->db->get($this->table);
         if($query->result())
         {
@@ -18,7 +18,7 @@ Class Menu_model extends MY_Model
     function  get_list_role_group_user_sub($menu_id,$role_id){
         $this->db->where('Menu_ID',$role_id);
         $this->db->where('Parrent_ID',$menu_id);
-        $this->db->join('rolemenu','rolemenu.Role_ID=menu.ID');
+        $this->db->join('cms_role_menu','cms_role_menu.Role_ID=cms_menu.ID');
         $query = $this->db->get($this->table);
         if($query->result())
         {
@@ -44,7 +44,7 @@ Class Menu_model extends MY_Model
         $this->db->where('Parrent_ID',$menu_id);
         $this->db->where('Group_ID',$group_id);
         $this->db->where('isThuong','1');
-        $this->db->join('rolemenu','menu.id=rolemenu.Menu_ID');
+        $this->db->join('cms_role_menu','cms_menu.id=cms_role_menu.Menu_ID');
         $this->db->order_by('Param','ASC');
         $query = $this->db->get($this->table);
         if($query->result())

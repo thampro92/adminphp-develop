@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'	=> '',
-    'hostname' => '139.180.211.16',
+    'hostname' => 'localhost', //139.180.211.16
     //'hostname' => '10.40.96.6',
-    'username' => 'diaffe3rents',
-    'password' => 'AK^A2nH42Ct6SEL-6j^sw4',
-    'database' => 'vinplay_admin',
+    'username' => 'root',//diaffe3rents
+    'password' => 'root',//AK^A2nH42Ct6SEL-6j^sw4
+    'database' => 'cms_admin_bk',//vinplay_admin
     'dbdriver' => 'mysqli',
     'port' => '3306',
     'dbprefix' => '',
@@ -96,6 +96,7 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
+
 $db['vinplay'] = array(
     'dsn'	=> '',
     'hostname' => '139.180.211.16',

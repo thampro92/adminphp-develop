@@ -1,7 +1,7 @@
 <?php
 Class Admin_model extends MY_Model
 {
-    var $table = 'user';//
+    var $table = 'cms_user';//
     function __construct()
     {
         parent::__construct();
@@ -57,9 +57,9 @@ Class Admin_model extends MY_Model
     }
 
     function  get_list_admin(){
-        $this->db->select('user.ID,user.UserName,user.FullName,groupuser.Name');
-        $this->db->join('userrole','user.ID = userrole.User_ID');
-        $this->db->join('groupuser','groupuser.Id = userrole.Group_ID');
+        $this->db->select('cms_user.ID,cms_user.UserName,cms_user.FullName,cms_group_user.Name');
+        $this->db->join('cms_user_role','cms_user.ID = cms_user_role.User_ID');
+        $this->db->join('cms_group_user','cms_group_user.Id = cms_user_role.Group_ID');
         $query = $this->db->get($this->table);
         if($query->result())
         {
@@ -70,7 +70,7 @@ Class Admin_model extends MY_Model
     }
 
     function  getPasswordById($id){
-        $this->db->select('user.Password');
+        $this->db->select('cms_user.Password');
         $this->db->where('ID',$id)->limit(1);
         $query = $this->db->get($this->table);
         if($query->result())
@@ -82,7 +82,7 @@ Class Admin_model extends MY_Model
         }
     }
     function  getUserNameById($id){
-        $this->db->select('user.UserName');
+        $this->db->select('cms_user.UserName');
         $this->db->where('ID',$id)->limit(1);
         $query = $this->db->get($this->table);
         if($query->result())

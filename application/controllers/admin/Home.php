@@ -71,10 +71,6 @@ $ip != "207.148.121.203"
             return $this->getIPAddress();
         }
 
-
-
-
-
         $this->lang->load('admin/home');
         $this->data['temp'] = 'admin/home/index';
         $this->load->view('admin/main', $this->data);

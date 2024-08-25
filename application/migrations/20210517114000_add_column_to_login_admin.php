@@ -30,14 +30,14 @@ class Migration_Add_column_to_login_admin extends CI_Migration
                 'after' => 'tool'
             ),
         );
-        $this->dbforge->add_column('log_loginadmin', $fields);
+        $this->dbforge->add_column('cms_log_login_admin', $fields);
     }
 
     public function down()
     {
-        $this->dbforge->drop_column('log_loginadmin', 'type');
-        $this->dbforge->drop_column('log_loginadmin', 'object');
-        $this->dbforge->drop_column('log_loginadmin', 'request_data');
-        $this->dbforge->drop_column('log_loginadmin', 'old_data');
+        $this->dbforge->drop_column('cms_log_login_admin', 'type');
+        $this->dbforge->drop_column('cms_log_login_admin', 'object');
+        $this->dbforge->drop_column('cms_log_login_admin', 'request_data');
+        $this->dbforge->drop_column('cms_log_login_admin', 'old_data');
     }
 }
