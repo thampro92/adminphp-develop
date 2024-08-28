@@ -173,8 +173,8 @@ class Uservinplay_usergame_model extends MY_Model
         ];
 
         $results = $this->mongodb_library->aggregate($pipeline);
-        $totalCount = $results[0]['totalCount']['count'];
-        $data = $results[0]['results'];
+        $totalCount = count($results) ? $results[0]['totalCount']['count'] : 0;
+        $data = count($results) ? $results[0]['results'] : [];
         return [
             'data' => $data,
             'totalCount' => $totalCount

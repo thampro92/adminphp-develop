@@ -1,59 +1,58 @@
 <?php
 
-Class Login extends MY_controller
+class Login extends MY_controller
 {
     function index()
     {
 
         $ip = $this->getIPAddress();
-        if(
+        if (
 
-$ip != "207.148.121.203" 
-&& $ip != "2001:19f0:4401:18:5400:4ff:fe12:75ff"
-&& $ip != "2405:4802:278:ea50:889:3dfe:9fa8:b0f6" 
-&& $ip != "::1" 
-&& $ip != "206.189.145.91"
-&& $ip != "139.59.239.174"
-&& $ip !="35.198.33.2"
-&& $ip !="35.198.56.180"
-&& $ip !="143.198.202.87"
-&& $ip != "206.189.155.142"
-&& $ip != "92.119.177.20"
-&& $ip != "139.59.224.232"
-&& $ip != "104.248.156.46"
-&& $ip != "104.248.156.85"
-&& $ip != "165.232.167.43"
-&& $ip != "157.245.146.129"
-&& $ip != "167.172.68.52"
-&& $ip != "167.172.86.154"
-&& $ip != "165.232.173.113"
-&& $ip != "2402:800:61c2:c6e2:1ce5:1509:8ec:9779"
-&& $ip != "206.189.145.91"
-&& $ip != "37.19.205.183"
-&& $ip != "143.198.219.221"
-&& $ip != "128.199.114.124"
-&& $ip != "128.199.114.136"
-&& $ip != "128.199.114.135"
-&& $ip != "128.199.167.98"
-&& $ip != "128.199.143.247"
-&& $ip != "128.199.148.144"
-&& $ip != "188.166.191.87"
-&& $ip != "128.199.195.129"
-&& $ip != "104.248.157.98"
-&& $ip != "159.223.78.206"
-&& $ip != "134.209.111.172"
-&& $ip != "157.245.147.82"
-&& $ip != "134.209.104.101"
-&& $ip != "118.71.116.63"
-&& $ip != "2405:4802:1bb6:96d0:1ce3:cfd3:6410:b5a3"
-&& $ip != "139.180.186.24"
-&& $ip != "157.230.47.251"
-&& $ip != "157.230.37.64"
+            $ip != "207.148.121.203"
+            && $ip != "2001:19f0:4401:18:5400:4ff:fe12:75ff"
+            && $ip != "2405:4802:278:ea50:889:3dfe:9fa8:b0f6"
+            && $ip != "::1"
+            && $ip != "206.189.145.91"
+            && $ip != "139.59.239.174"
+            && $ip != "35.198.33.2"
+            && $ip != "35.198.56.180"
+            && $ip != "143.198.202.87"
+            && $ip != "206.189.155.142"
+            && $ip != "92.119.177.20"
+            && $ip != "139.59.224.232"
+            && $ip != "104.248.156.46"
+            && $ip != "104.248.156.85"
+            && $ip != "165.232.167.43"
+            && $ip != "157.245.146.129"
+            && $ip != "167.172.68.52"
+            && $ip != "167.172.86.154"
+            && $ip != "165.232.173.113"
+            && $ip != "2402:800:61c2:c6e2:1ce5:1509:8ec:9779"
+            && $ip != "206.189.145.91"
+            && $ip != "37.19.205.183"
+            && $ip != "143.198.219.221"
+            && $ip != "128.199.114.124"
+            && $ip != "128.199.114.136"
+            && $ip != "128.199.114.135"
+            && $ip != "128.199.167.98"
+            && $ip != "128.199.143.247"
+            && $ip != "128.199.148.144"
+            && $ip != "188.166.191.87"
+            && $ip != "128.199.195.129"
+            && $ip != "104.248.157.98"
+            && $ip != "159.223.78.206"
+            && $ip != "134.209.111.172"
+            && $ip != "157.245.147.82"
+            && $ip != "134.209.104.101"
+            && $ip != "118.71.116.63"
+            && $ip != "2405:4802:1bb6:96d0:1ce3:cfd3:6410:b5a3"
+            && $ip != "139.180.186.24"
+            && $ip != "157.230.47.251"
+            && $ip != "157.230.37.64"
 
-        ){
+        ) {
             return $this->getIPAddress();
         }
-
 
 
         $message = $this->session->flashdata('message');
@@ -98,122 +97,121 @@ $ip != "207.148.121.203"
         return true;
     }
 
-    function loginajax(){
+    function loginajax()
+    {
         $username = $this->input->post('username');
-        $password =  $this->input->post('password');
-        $datainfo = $this->curl->simple_get($this->config->item('api_url2').'?c=701&un='.$username.'&pw=' . $password);
+        $password = $this->input->post('password');
+        $datainfo = $this->curl->simple_get($this->config->item('api_url2') . '?c=701&un=' . $username . '&pw=' . $password);
         $data = json_decode($datainfo);
-        if($data->success == true){
-            $this->log_login_admin($username,"Thành công",0);
+        if ($data->success == true) {
+            $this->log_login_admin($username, "Thành công", 0);
             $dataObj = json_decode(base64_decode($data->sessionKey));
-            $nickname = $dataObj -> nickname;
+            $nickname = $dataObj->nickname;
             $this->session->set_userdata('nicknameadmin', $nickname);
             $this->session->set_userdata('isMobileSecure', $dataObj->mobileSecure);
             if ($dataObj->mobileSecure == 0) {
-                if($this->infouser($nickname) == true){
+                if ($this->infouser($nickname) == true) {
                     $data->inforuser = 1;
-                    $this->log_login_admin($username,"Login",0);
-                }else{
+                    $this->log_login_admin($username, "Login", 0);
+                } else {
                     $data->inforuser = 2;
-                    $this->log_login_admin($username,"Tài khoản chưa được phân quyền",1);
+                    $this->log_login_admin($username, "Tài khoản chưa được phân quyền", 1);
                 }
                 $datainfo = json_encode($data);
             }
-        }else{
-            if($data->errorCode == 1001){
-                $this->log_login_admin($username,"Hệ thống gián đoạn",1);
+        } else {
+            if ($data->errorCode == 1001) {
+                $this->log_login_admin($username, "Hệ thống gián đoạn", 1);
             }
-            if($data->errorCode == 1005){
-                $this->log_login_admin($username,"Username không tồn tại",1);
+            if ($data->errorCode == 1005) {
+                $this->log_login_admin($username, "Username không tồn tại", 1);
             }
-            if($data->errorCode == 1007){
-                $this->log_login_admin($username,"Password không đúng",1);
+            if ($data->errorCode == 1007) {
+                $this->log_login_admin($username, "Password không đúng", 1);
             }
-            if($data->errorCode == 1109){
-                $this->log_login_admin($username,"Tài khoản bị khóa đăng nhập",1);
+            if ($data->errorCode == 1109) {
+                $this->log_login_admin($username, "Tài khoản bị khóa đăng nhập", 1);
             }
-            if($data->errorCode == 1114){
-                $this->log_login_admin($username,"Hệ thống bảo trì",1);
+            if ($data->errorCode == 1114) {
+                $this->log_login_admin($username, "Hệ thống bảo trì", 1);
             }
-            if($data->errorCode == 2001){
-                $this->log_login_admin($username,"Tài khoản chưa cập nhật nickname",1);
+            if ($data->errorCode == 2001) {
+                $this->log_login_admin($username, "Tài khoản chưa cập nhật nickname", 1);
             }
-            if($data->errorCode == 1012){
-                $this->log_login_admin($username,"Tài khoản đăng nhập bằng OTP",1);
+            if ($data->errorCode == 1012) {
+                $this->log_login_admin($username, "Tài khoản đăng nhập bằng OTP", 1);
             }
         }
-        if(isset($datainfo)) {
+        if (isset($datainfo)) {
             echo $datainfo;
-        }else{
+        } else {
             echo "Bạn không được hack";
         }
     }
 
-    function getIPAddress() {
-        if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    function getIPAddress()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        //whether ip is from the proxy
+        } //whether ip is from the proxy
         elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        else{
+        } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         return $ip;
     }
 
 
-
     function loginODP()
     {
 
         $ip = $this->getIPAddress();
-        if(
+        if (
 
-$ip != "207.148.121.203" 
-&& $ip != "2001:19f0:4401:18:5400:4ff:fe12:75ff"
-&& $ip != "2405:4802:278:ea50:889:3dfe:9fa8:b0f6" 
-&& $ip != "::1" 
-&& $ip != "206.189.145.91"
-&& $ip != "139.59.239.174"
-&& $ip !="35.198.33.2"
-&& $ip !="35.198.56.180"
-&& $ip !="143.198.202.87"
-&& $ip != "206.189.155.142"
-&& $ip != "92.119.177.20"
-&& $ip != "139.59.224.232"
-&& $ip != "104.248.156.46"
-&& $ip != "104.248.156.85"
-&& $ip != "165.232.167.43"
-&& $ip != "157.245.146.129"
-&& $ip != "167.172.68.52"
-&& $ip != "167.172.86.154"
-&& $ip != "165.232.173.113"
-&& $ip != "2402:800:61c2:c6e2:1ce5:1509:8ec:9779"
-&& $ip != "206.189.145.91"
-&& $ip != "37.19.205.183"
-&& $ip != "143.198.219.221"
-&& $ip != "128.199.114.124"
-&& $ip != "128.199.114.136"
-&& $ip != "128.199.114.135"
-&& $ip != "128.199.167.98"
-&& $ip != "128.199.143.247"
-&& $ip != "128.199.148.144"
-&& $ip != "188.166.191.87"
-&& $ip != "128.199.195.129"
-&& $ip != "104.248.157.98"
-&& $ip != "159.223.78.206"
-&& $ip != "134.209.111.172"
-&& $ip != "157.245.147.82"
-&& $ip != "134.209.104.101"
-&& $ip != "118.71.116.63"
-&& $ip != "2405:4802:1bb6:96d0:1ce3:cfd3:6410:b5a3"
-&& $ip != "139.180.186.24"
-&& $ip != "157.230.47.251"
-&& $ip != "157.230.37.64"
+            $ip != "207.148.121.203"
+            && $ip != "2001:19f0:4401:18:5400:4ff:fe12:75ff"
+            && $ip != "2405:4802:278:ea50:889:3dfe:9fa8:b0f6"
+            && $ip != "::1"
+            && $ip != "206.189.145.91"
+            && $ip != "139.59.239.174"
+            && $ip != "35.198.33.2"
+            && $ip != "35.198.56.180"
+            && $ip != "143.198.202.87"
+            && $ip != "206.189.155.142"
+            && $ip != "92.119.177.20"
+            && $ip != "139.59.224.232"
+            && $ip != "104.248.156.46"
+            && $ip != "104.248.156.85"
+            && $ip != "165.232.167.43"
+            && $ip != "157.245.146.129"
+            && $ip != "167.172.68.52"
+            && $ip != "167.172.86.154"
+            && $ip != "165.232.173.113"
+            && $ip != "2402:800:61c2:c6e2:1ce5:1509:8ec:9779"
+            && $ip != "206.189.145.91"
+            && $ip != "37.19.205.183"
+            && $ip != "143.198.219.221"
+            && $ip != "128.199.114.124"
+            && $ip != "128.199.114.136"
+            && $ip != "128.199.114.135"
+            && $ip != "128.199.167.98"
+            && $ip != "128.199.143.247"
+            && $ip != "128.199.148.144"
+            && $ip != "188.166.191.87"
+            && $ip != "128.199.195.129"
+            && $ip != "104.248.157.98"
+            && $ip != "159.223.78.206"
+            && $ip != "134.209.111.172"
+            && $ip != "157.245.147.82"
+            && $ip != "134.209.104.101"
+            && $ip != "118.71.116.63"
+            && $ip != "2405:4802:1bb6:96d0:1ce3:cfd3:6410:b5a3"
+            && $ip != "139.180.186.24"
+            && $ip != "157.230.47.251"
+            && $ip != "157.230.37.64"
 
-        ){
+        ) {
             return $this->getIPAddress();
         }
 
@@ -223,10 +221,14 @@ $ip != "207.148.121.203"
 //        $odpinfo = $this->get_data_curl($this->config->item('api_backend') . '?c=701&un=' . $username . '&pw=' . $password);
         $this->load->model('admin_model');
         $data = $this->admin_model->check_login($username, $password);
-        if (isset($data)) {
+
+        if ($data === false) {
+            $this->log_login_admin($username, "Hệ thống gián đoạn", 1);
+            echo json_encode("3");
+        }else if ($data !== false) {
             if ($data->success == true) {
                 $dataObj = json_decode(base64_decode($data->sessionKey));
-                $nickname = $dataObj -> nickname;
+                $nickname = $dataObj->nickname;
                 $this->session->set_userdata('nicknameadmin', $nickname);
                 $this->session->set_userdata('isMobileSecure', $dataObj->mobileSecure);
                 //print_r(json_decode(base64_decode($data->sessionKey)));
