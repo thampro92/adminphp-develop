@@ -25,7 +25,7 @@ date_default_timezone_set('asia/ho_chi_minh');
 */
 
 
-$config['base_url'] = 'http://localhost/adminphp-develop/';
+$config['base_url'] = 'http://localhost/adminphp-develop/';//https://cms.domainsieudep.com/
 //$config['base_url'] = 'https://vh.luxvip.bio/';
 $config['api_url'] = "http://149.28.141.246:8081/api";
 $config['api_three_rd'] = "http://127.0.0.1:9112";
@@ -44,7 +44,7 @@ $config['api_backendz'] = "http://127.0.0.1:8082/api_backend";
 $config['api_backendy'] = "http://127.0.0.1:19088/api_backend";
 
 /*
-$config['base_url'] = 'https://vh.vb52.vip/';
+$config['base_url'] = 'https://cms.domainsieudep.com/';
 $config['api_url'] = "http://149.28.141.246:8081/api";
 $config['api_three_rd'] = "http://149.28.141.246:9112";
 $config['api_backend'] = "http://149.28.141.246:19082/api_backend";

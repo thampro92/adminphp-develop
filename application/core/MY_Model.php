@@ -319,7 +319,7 @@ class MY_Model extends CI_Model {
             $oldData = $this->db->where($condition)->get($this->table)->result();
             $data['old_data'] = json_encode($oldData);
         }
-        $this->db->insert('cms_log_login_admin', $data);
+        $this->db->insert('log_loginadmin', $data);
     }
 }
 ?>

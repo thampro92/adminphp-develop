@@ -1,7 +1,7 @@
 <?php
 Class Userrole_model extends MY_Model
 {
-    var $table = 'cms_user_role';
+    var $table = 'userrole';
 
     const ACTIVE_NORMAL = 1;
 
@@ -29,7 +29,7 @@ Class Userrole_model extends MY_Model
     function  get_list_role_menu($user_id,$menu_id){
         $this->db->where('User_ID',$user_id);
         $this->db->where('Menu_ID',$menu_id);
-        $this->db->join('cms_role_menu','cms_user_role.Group_ID = cms_role_menu.Group_ID');
+        $this->db->join('rolemenu','userrole.Group_ID = rolemenu.Group_ID');
         $query = $this->db->get($this->table);
         if($query->result())
         {
@@ -43,9 +43,9 @@ Class Userrole_model extends MY_Model
     {
         $this->db->where('User_ID', $user_id);
         $this->db->where('isThuong', self::ACTIVE_NORMAL);
-        $this->db->select(['cms_menu.Link']);
-        $this->db->join('cms_role_menu', 'cms_user_role.Group_ID = cms_role_menu.Group_ID');
-        $this->db->join('cms_menu', 'cms_menu.id = cms_role_menu.Menu_ID');
+        $this->db->select(['menu.Link']);
+        $this->db->join('rolemenu', 'userrole.Group_ID = rolemenu.Group_ID');
+        $this->db->join('menu', 'menu.id = rolemenu.Menu_ID');
         $query = $this->db->get($this->table);
         if ($query->result()) {
             return $query->result();

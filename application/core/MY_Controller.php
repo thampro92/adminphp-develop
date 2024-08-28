@@ -147,8 +147,8 @@ class MY_Controller extends CI_Controller
         $controller = strtolower($controller);
 
         $login = $this->session->userdata('user_id_login');
-
         //neu ma chua dang nhap,ma truy cap 1 controller khac login
+
         if (!$login && $controller != 'login') {
             redirect(admin_url('login'));
         }

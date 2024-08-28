@@ -1,13 +1,13 @@
 <?php
 Class Logadmin_model extends MY_Model
 {
-    var $table = 'cms_log_admin';
+    var $table = 'log_admin';
     function listlogadmin()
     {
         $sort_order = 'desc';
         $sort_by = 'id';
         $q = $this->db->select('*')
-            ->from('cms_log_admin')
+            ->from('log_admin')
             ->order_by($sort_by, $sort_order)
             ->limit(1000);
         if ($this->input->post('name')) {

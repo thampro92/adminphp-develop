@@ -1,13 +1,13 @@
 <?php
 Class Log_loginadmin_model extends MY_Model
 {
-    var $table = 'cms_log_login_admin';
+    var $table = 'log_loginadmin';
     function listlogloginadmin()
     {
         $sort_order = 'desc';
         $sort_by = 'id';
         $q = $this->db->select('*')
-            ->from('cms_log_login_admin')
+            ->from('log_loginadmin')
             ->order_by($sort_by, $sort_order)
             ->limit(1000);
         if ($this->input->post('username')) {

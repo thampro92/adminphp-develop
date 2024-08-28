@@ -6,7 +6,7 @@ class Migration_Delete_menu_kim_binh_mai extends CI_Migration
 {
     public function up()
     {
-        $this->db->delete('cms_menu', array('Link' => 'loggameslot/kimbinhmai'));
+        $this->db->delete('menu', array('Link' => 'loggameslot/kimbinhmai'));
     }
 
     public function down()

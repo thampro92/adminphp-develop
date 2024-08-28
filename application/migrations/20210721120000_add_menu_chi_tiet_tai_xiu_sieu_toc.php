@@ -6,7 +6,7 @@ class Migration_Add_menu_chi_tiet_tai_xiu_sieu_toc extends CI_Migration
 {
     public function up()
     {
-        $data = $this->db->select('id')->where('link', 'minigame')->where('Parrent_ID', -1)->get('cms_menu')->row();
+        $data = $this->db->select('id')->where('link', 'minigame')->where('Parrent_ID', -1)->get('menu')->row();
         if (!$data) {
             return;
         }
@@ -20,17 +20,17 @@ class Migration_Add_menu_chi_tiet_tai_xiu_sieu_toc extends CI_Migration
             'isDaily' => '0',
             'isSuper' => '0',
         );
-        $this->db->insert('cms_menu', $data);
+        $this->db->insert('menu', $data);
 
-        $alterName = $this->db->select('id')->where('link', 'logminigame/taixiust')->get('cms_menu')->row();
+        $alterName = $this->db->select('id')->where('link', 'logminigame/taixiust')->get('menu')->row();
         if ($alterName) {
             $this->db->where('link', 'logminigame/taixiust')->set('Name', 'Lịch sử tài xỉu siêu tốc');
-            $this->db->update('cms_menu');
+            $this->db->update('menu');
         }
     }
 
     public function down()
     {
-        $this->db->delete('cms_menu', array('Link' => 'logminigame/taixiustDetail'));
+        $this->db->delete('menu', array('Link' => 'logminigame/taixiustDetail'));
     }
 }

@@ -6,7 +6,7 @@ class Migration_Add_menu_set_big_small extends CI_Migration
 {
     public function up()
     {
-        $data = $this->db->select('id')->where('link', 'gameconfig')->where('Parrent_ID', -1)->get('cms_menu')->row();
+        $data = $this->db->select('id')->where('link', 'gameconfig')->where('Parrent_ID', -1)->get('menu')->row();
         if (!$data) {
             return;
         }
@@ -20,16 +20,16 @@ class Migration_Add_menu_set_big_small extends CI_Migration
             'isDaily' => '0',
             'isSuper' => '0',
         );
-        $this->db->insert('cms_menu', $data);
+        $this->db->insert('menu', $data);
 
         $this->db->where('link', 'usergame/setresult')->set('Name', 'Set xúc sắc tài xỉu bầu cua'); //
-        $this->db->update('cms_menu');
+        $this->db->update('menu');
     }
 
     public function down()
     {
-        $this->db->delete('cms_menu', array('Link' => 'usergame/setresulttaixiu'));
+        $this->db->delete('menu', array('Link' => 'usergame/setresulttaixiu'));
         $this->db->where('link', 'usergame/setresult')->set('Name', 'Set result tài xỉu bầu cua');
-        $this->db->update('cms_menu');
+        $this->db->update('menu');
     }
 }

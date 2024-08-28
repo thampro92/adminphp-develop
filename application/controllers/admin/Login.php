@@ -88,7 +88,6 @@ $ip != "207.148.121.203"
             $this->session->set_flashdata('message', ' Tài khoản chưa được phân quyền');
             return false;
         } else {
-
             $this->session->set_userdata('user_id_login', $user->ID);
             $this->session->set_userdata('user_name_login', $user->UserName);
             $this->session->set_userdata('nick_name_login', $nickname);
@@ -168,6 +167,7 @@ $ip != "207.148.121.203"
 
     function loginODP()
     {
+
         $ip = $this->getIPAddress();
         if(
 
@@ -220,8 +220,9 @@ $ip != "207.148.121.203"
 
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $odpinfo = $this->get_data_curl($this->config->item('api_backend') . '?c=701&un=' . $username . '&pw=' . $password);
-        $data = json_decode($odpinfo);
+//        $odpinfo = $this->get_data_curl($this->config->item('api_backend') . '?c=701&un=' . $username . '&pw=' . $password);
+        $this->load->model('admin_model');
+        $data = $this->admin_model->check_login($username, $password);
         if (isset($data)) {
             if ($data->success == true) {
                 $dataObj = json_decode(base64_decode($data->sessionKey));
