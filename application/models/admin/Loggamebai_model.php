@@ -3,9 +3,9 @@
 class Loggamebai_model extends MY_Model
 {
     var $coreDB = "DBCoreLog";
-    var $table1 = 'log_cao_thap';
+    var $table1 = 'caothap_transactions';
     var $table2 = 'log_game_BaCay_detail';
-    var $table3 = 'log_game_XocDia_detail';
+    var $table3 = 'xoc_dia_transactions';
     var $table4 = 'log_game_Tlmn_detail';
     var $table5 = 'log_game_Binh_detail';
     var $table6 = 'log_game_Lieng_detail';
@@ -29,19 +29,20 @@ class Loggamebai_model extends MY_Model
         $maxItem = 50;
 
         $projection = [
-            "_id" => 0,
-            "tran_id" => '$trans_id',
-            "nickName" => '$nick_name',
-            "pot_bet" => 1,
-            "step" => 1,
+            "nick_name" => 1,
+            "reference_id" => 1,
             "bet_value" => 1,
             "result" => 1,
-            "prize" => 1,
-            "cards" => 1,
-            "current_pot" => 1,
-            "current_fund" => 1,
-            "money_type" => 1,
-            "time_log" => 1
+            "step" => 1,
+            "win_value" => 1,
+            "jackpot" => 1,
+            "time_log" => [
+                '$dateToString' => [
+                    'format' => '%d-%m-%Y %H:%M:%S',
+                    'date' => '$create_time',
+                    'timezone' => '+00:00'
+                ]
+            ]
         ];
 
         $options = [
@@ -56,7 +57,7 @@ class Loggamebai_model extends MY_Model
         ];
 
         if (strlen($transid)) {
-            $conds[] = ['trans_id' => intval($transid)];
+            $conds[] = ['reference_id' => intval($transid)];
         }
 
         if (strlen($nickname)) {
@@ -64,7 +65,7 @@ class Loggamebai_model extends MY_Model
         }
 
         if (strlen($moneyType) && intval($moneyType)) {
-            $conds[] = ['money_type' => intval($moneyType)];
+            //$conds[] = ['money_type' => intval($moneyType)];
         }
 
         $filter = [];
@@ -113,8 +114,8 @@ class Loggamebai_model extends MY_Model
     {
         $this->load->library('mongodb_library');
 
-        $fromDate = 1722038401;
-        $toDate = 1722124741;
+//        $fromDate = 1722038401;
+//        $toDate = 1722124741;
 
         $startTime = new MongoDB\BSON\UTCDateTime($fromDate * 1000);
         $endTime = new MongoDB\BSON\UTCDateTime($toDate * 1000); // Midnight of the next day
@@ -125,17 +126,17 @@ class Loggamebai_model extends MY_Model
         $projection = [
             "actionName" => ['$literal' => null],
             "createTime" => '$create_time',
-            "gameName" => '$game_name',
+            "gameName" => ['$literal' => $namegame],
             "id" => ['$literal' => null],
             "logDetail" => '$log_detail',
             "moneyType" => '$money_type',
             "nickName" => '$nick_name',
             "sessionId" => '$session_id',
-            'timeLog' => '$time_log',
+            'timeLog' => '$create_time',
             "time" => [
                 '$dateToString' => [
                     'format' => '%d-%m-%Y %H:%M:%S',
-                    'date' => ['$toDate' => ['$toLong' => '$time_log']]
+                    'date' => ['$toDate' => ['$toLong' => '$create_time']]
                 ]
             ]
         ];

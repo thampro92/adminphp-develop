@@ -28,7 +28,7 @@
                                 <div class="input-group date" id="datetimepicker1">
                                     <input type="text" id="fromDate" name="fromDate"
                                            value="<?= empty($this->input->post('fromDate')) ? (empty($this->input->get('fromDate')) ? '' : $this->input->get('fromDate')) : $this->input->post('fromDate') ?>">
-                                            <span class="input-group-addon">
+                                    <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                 </div>
@@ -40,7 +40,7 @@
                                 <div class="input-group date" id="datetimepicker2">
                                     <input type="text" id="toDate" name="toDate"
                                            value="<?= empty($this->input->post('toDate')) ? (empty($this->input->get('toDate')) ? '' : $this->input->get('toDate')) : $this->input->post('toDate') ?>">
-                                            <span class="input-group-addon">
+                                    <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                 </div>
@@ -53,18 +53,22 @@
                         <tr>
                             <td><label class="formLeft">Nickname:</label></td>
                             <td><input type="text" class="my-input-class"
-                                       id="nickname" value="<?= empty($this->input->post('nickname')) ? (empty($this->input->get('nickname')) ? '' : $this->input->get('nickname')) : $this->input->post('nickname') ?>"
+                                       id="nickname"
+                                       value="<?= empty($this->input->post('nickname')) ? (empty($this->input->get('nickname')) ? '' : $this->input->get('nickname')) : $this->input->post('nickname') ?>"
                                        name="nickname">
                             </td>
                             <td><label class="formLeft">UserName:</label></td>
                             <td><input type="text" class="my-input-class"
-                                       id="username" value="<?= empty($this->input->post('username')) ? (empty($this->input->get('username')) ? '' : $this->input->get('username')) : $this->input->post('username') ?>"
+                                       id="username"
+                                       value="<?= empty($this->input->post('username')) ? (empty($this->input->get('username')) ? '' : $this->input->get('username')) : $this->input->post('username') ?>"
                                        name="username">
                             </td>
                             <td><label class="formLeft">Mã đại lý:</label>
                             </td>
                             <td><input type="text" class="my-input-class"
-                                       id="refcode" value="<?= empty($this->input->post('refcode')) ? (empty($this->input->get('refcode')) ? '' : $this->input->get('refcode')) : $this->input->post('refcode') ?>" name="refcode">
+                                       id="refcode"
+                                       value="<?= empty($this->input->post('refcode')) ? (empty($this->input->get('refcode')) ? '' : $this->input->get('refcode')) : $this->input->post('refcode') ?>"
+                                       name="refcode">
                             </td>
                         </tr>
                         </tr>
@@ -90,7 +94,14 @@
                             </td>
                             <td class="item">
                                 <select id="record" name="record" class="my-input-class">
-                                    <option value="50" <?php if ($this->input->post('record') == 50 || $this->input->get('record') == 50) {echo "selected";} ?>>
+                                    <option value="10" <?php if ($this->input->post('record') == 10 || $this->input->get('record') == 10) {
+                                        echo "selected";
+                                    } ?>>
+                                        10
+                                    </option>
+                                    <option value="50" <?php if ($this->input->post('record') == 50 || $this->input->get('record') == 50) {
+                                        echo "selected";
+                                    } ?>>
                                         50
                                     </option>
                                     <option value="100" <?php if ($this->input->post('record') == 100 || $this->input->get('record') == 100) {
@@ -129,10 +140,13 @@
                             <td><label class="formLeft">Điện thoại:</label>
                             </td>
                             <td><input type="text" class="my-input-class"
-                                       id="phone" value="<?= empty($this->input->post('phone')) ? (empty($this->input->get('phone')) ? '' : $this->input->get('phone')) : $this->input->post('phone') ?>" name="phone"></td>
+                                       id="phone"
+                                       value="<?= empty($this->input->post('phone')) ? (empty($this->input->get('phone')) ? '' : $this->input->get('phone')) : $this->input->post('phone') ?>"
+                                       name="phone"></td>
                             <td><label class="formLeft">Email:</label></td>
                             <td><input type="text" class="my-input-class"
-                                       id="txtemail" value="<?= empty($this->input->post('txtemail')) ? (empty($this->input->get('txtemail')) ? '' : $this->input->get('txtemail')) : $this->input->post('txtemail') ?>"
+                                       id="txtemail"
+                                       value="<?= empty($this->input->post('txtemail')) ? (empty($this->input->get('txtemail')) ? '' : $this->input->get('txtemail')) : $this->input->post('txtemail') ?>"
                                        name="txtemail"></td>
                         </tr>
                     </table>
@@ -140,18 +154,16 @@
                 <div class="formRow">
                     <table>
                         <tr>
-                            <td style="">
+                            <td style="display: flex;padding-left: 55px">
                                 <input type="submit" id="search_tran" value="Tìm kiếm" class="button blueB"
                                        style="margin-left: 70px">
-                            </td>
-                            <td>
+
                                 <input type="reset"
                                        onclick="window.location.href = '<?php echo admin_url('usergame/uservinplay') ?>'; "
                                        value="Reset" class="basic" style="margin-left: 20px">
-                            </td>
-                            <td>
+
                                 <input hidden type="text" value="0" name="isEx" id="isEx">
-                                <button  class="button blueB" id="export" style="margin-left: 20px">
+                                <button class="button blueB" id="export" style="margin-left: 20px">
                                     Xuất dữ liệu
                                 </button>
                             </td>
@@ -207,7 +219,8 @@
         <ul id="pagination-demo" class="pagination-lg"></ul>
     </div>
 </div>
-<div class="modal fade" id="agent-bootstrap-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="agent-bootstrap-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -221,7 +234,8 @@
                 <form class="tagForm needs-validation" action="" novalidate>
                     <input id="nickname-invisible" type="text" value="" hidden>
                     <div class="form-group">
-                        <label for="inputNickName" class="col-form-label">Nick Name : <span id="nickname-visible"></span></label>
+                        <label for="inputNickName" class="col-form-label">Nick Name : <span
+                                    id="nickname-visible"></span></label>
                     </div>
                     <div class="form-group">
                         <label for="inputCustomerName" class="col-form-label">Mã đại lý : </label>
@@ -237,10 +251,10 @@
     </div>
 </div>
 <script>
-    var page_size = '<?php echo $this->input->post('page_size') ?>' || 50
+    var page_size = '<?php echo $this->input->post('page_size') ?>' || 10
     var list_data = []
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         initData()
     })
 
@@ -290,8 +304,7 @@
         rs += "<td class='stt'>" + stt + "</td>";
 
 
-
-        rs += "<td>" + (value.username ) + "</td>";
+        rs += "<td>" + (value.username) + "</td>";
 
         rs += "<td>" +
             `<a href="<?php echo admin_url('useraggregate')?>?nn=${value.nickname}&us=${value.username}&st=${value.status}&${uri}" style="color: blue">${value.nickname}</a>` + "</td>";
@@ -306,18 +319,18 @@
             '<div class="tipS view-action text-info btn-circle pop-option" title="Khóa chát tài khoản"> Khóa chát </div>' +
 
             '<div class="tipS change-password-user-action mt-2 pop-option" title="Đổi mật khẩu user">' +
-                    '<img src="<?php echo public_url('admin') ?>/images/icons/key.png"/>' +
+            '<img src="<?php echo public_url('admin') ?>/images/icons/key.png"/>' +
             '</div>' +
 
-           `<div class="pop-option mt-2" title="Xóa Gắn Kết Telegram" onclick="delTele('${value.nickname}')">` +
-                'Xóa Telegram' +
+            `<div class="pop-option mt-2" title="Xóa Gắn Kết Telegram" onclick="delTele('${value.nickname}')">` +
+            'Xóa Telegram' +
             '</div>' +
             "</td>";
         return rs;
     }
 
 
-function delTele(nn) {
+    function delTele(nn) {
         $("#spinner").show();
         $.ajax({
             type: "POST",
@@ -326,21 +339,21 @@ function delTele(nn) {
                 nickname: nn
             },
             dataType: 'json',
-            success: function (result) { 
+            success: function (result) {
                 $("#spinner").hide();
                 if (result.response == 1) {
                     bootbox.alert({
-                    message: `<i class="fa fa-times-circle text-success" aria-hidden="true"></i> Xóa Gắn Kết telegram Thành công.`,
-                    backdrop: true,
-                    centerVertical: true
-                })
-                } else  {
+                        message: `<i class="fa fa-times-circle text-success" aria-hidden="true"></i> Xóa Gắn Kết telegram Thành công.`,
+                        backdrop: true,
+                        centerVertical: true
+                    })
+                } else {
                     bootbox.alert({
-                    message: `<i class="fa fa-times-circle text-danger" aria-hidden="true"></i> Xóa Gắn Kết telegram Thất Bại.`,
-                    backdrop: true,
-                    centerVertical: true
-                })
-                } 
+                        message: `<i class="fa fa-times-circle text-danger" aria-hidden="true"></i> Xóa Gắn Kết telegram Thất Bại.`,
+                        backdrop: true,
+                        centerVertical: true
+                    })
+                }
             }, error: function () {
                 $("#spinner").hide();
                 bootbox.alert({
@@ -349,7 +362,7 @@ function delTele(nn) {
                     centerVertical: true
                 })
             }, timeout: 60000
-        }) 
+        })
     }
 
 
@@ -388,13 +401,12 @@ function delTele(nn) {
         });
     });
 
-    function getUri()
-    {
+    function getUri() {
         let uri = ``;
         let nickname = $("#nickname").val();
         if (nickname != undefined && nickname.length) {
             uri = uri + `nickname=${nickname}&`;
-        }        
+        }
 
         let refcode = $("#refcode").val();
         if (refcode != undefined && refcode.length) {
@@ -427,7 +439,7 @@ function delTele(nn) {
         }
 
         let toDate = $("#toDate").val();
-        if (toDate != undefined  && toDate.length) {
+        if (toDate != undefined && toDate.length) {
             uri = uri + `toDate=${toDate}&`;
         }
 
@@ -435,12 +447,12 @@ function delTele(nn) {
     }
 
     function handleActionListener() {
-        $('.tipS.view-action').click( function (e){
+        $('.tipS.view-action').click(function (e) {
 
             e.preventDefault()
 
             let item_index = $(this).closest('td').siblings('.stt').text()
-            let value = list_data[(item_index -1)%page_size]
+            let value = list_data[(item_index - 1) % page_size]
             let nickname = value ? value.nickname : undefined
             if (!nickname) {
                 bootbox.alert({
@@ -454,15 +466,15 @@ function delTele(nn) {
                     title: `Khóa chát user <b>${nickname}</b>!`,
                     message: `<p>Nhập thời gian muốn khóa(phút) <b>nhập:  -1 để khóa vĩnh viễn. 0 để mở khỏa</b></p>`,
                     callback: function (result) {
-                        if(result){
-                            if(result) {
+                        if (result) {
+                            if (result) {
                                 $("#spinner").show();
                                 $.ajax({
                                     type: "POST",
                                     url: "<?php echo admin_url('usergame/lockchat_uservinplayajax')?>",
                                     data: {
                                         "reason": result.trim(),
-                                        "nn" : nickname
+                                        "nn": nickname
                                     },
                                     dataType: 'json',
                                     success: function (response) {
@@ -487,23 +499,25 @@ function delTele(nn) {
                                         console.error(e.message)
                                         $("#spinner").hide();
                                         $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                                    }, timeout: 20000})
+                                    }, timeout: 600000
+                                })
                             } else {
                                 bootbox.alert({
                                     message: `<i class="fa fa-times-circle" aria-hidden="true"></i> Nhập lại Thời gian đi cưng`,
                                     backdrop: true,
                                     centerVertical: true
                                 })
-                            }}
+                            }
+                        }
                     }
                 });
             }
         })
-        $('.tipS.change-password-user-action').click( function (e){
+        $('.tipS.change-password-user-action').click(function (e) {
             e.preventDefault()
 
             let item_index = $(this).closest('td').siblings('.stt').text()
-            let value = list_data[(item_index -1)%page_size]
+            let value = list_data[(item_index - 1) % page_size]
             let nickname = value ? value.username : undefined
             if (!nickname) {
                 bootbox.alert({
@@ -517,46 +531,48 @@ function delTele(nn) {
                     title: `Reset password user <b>${nickname}</b>!`,
                     message: `<p>Nhập lại chính xác <b>${nickname}</b> để thực hiện hành động.</p>`,
                     callback: function (result) {
-                        if(result){
-                        if(result.trim() == nickname) {
-                            $("#spinner").show();
-                            $.ajax({
-                                type: "POST",
-                                url: "<?php echo admin_url('usergame/pwd_uservinplayajax')?>",
-                                data: {
-                                    "reason": result.trim()
-                                },
-                                dataType: 'json',
-                                success: function (response) {
-                                    $("#spinner").hide();
-                                    if (response.success) {
-                                        $("#resultsearch").html("");
+                        if (result) {
+                            if (result.trim() == nickname) {
+                                $("#spinner").show();
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo admin_url('usergame/pwd_uservinplayajax')?>",
+                                    data: {
+                                        "reason": result.trim()
+                                    },
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        $("#spinner").hide();
+                                        if (response.success) {
+                                            $("#resultsearch").html("");
 
-                                        bootbox.alert({
-                                            message: `<i class="fa fa-times-circle text-success" aria-hidden="true"></i> Reset mật khẩu ${nickname} thành công. Mật khẩu mới:  <b>${response.data}</b>`,
-                                            backdrop: true,
-                                            centerVertical: true
-                                        })
-                                    } else {
-                                        bootbox.alert({
-                                            message: `<i class="fa fa-times-circle text-danger" aria-hidden="true"></i> Đã có lỗi xảy ra ${response.errorCode} : ${response.message}`,
-                                            backdrop: true,
-                                            centerVertical: true
-                                        })
-                                    }
+                                            bootbox.alert({
+                                                message: `<i class="fa fa-times-circle text-success" aria-hidden="true"></i> Reset mật khẩu ${nickname} thành công. Mật khẩu mới:  <b>${response.data}</b>`,
+                                                backdrop: true,
+                                                centerVertical: true
+                                            })
+                                        } else {
+                                            bootbox.alert({
+                                                message: `<i class="fa fa-times-circle text-danger" aria-hidden="true"></i> Đã có lỗi xảy ra ${response.errorCode} : ${response.message}`,
+                                                backdrop: true,
+                                                centerVertical: true
+                                            })
+                                        }
 
-                                }, error: function (e) {
-                                    console.error(e.message)
-                                    $("#spinner").hide();
-                                    $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                                }, timeout: 20000})
-                        } else {
-                            bootbox.alert({
-                                message: `<i class="fa fa-times-circle" aria-hidden="true"></i> Nhập lại nickname đi cưng`,
-                                backdrop: true,
-                                centerVertical: true
-                            })
-                        }}
+                                    }, error: function (e) {
+                                        console.error(e.message)
+                                        $("#spinner").hide();
+                                        $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
+                                    }, timeout: 600000
+                                })
+                            } else {
+                                bootbox.alert({
+                                    message: `<i class="fa fa-times-circle" aria-hidden="true"></i> Nhập lại nickname đi cưng`,
+                                    backdrop: true,
+                                    centerVertical: true
+                                })
+                            }
+                        }
                     }
                 });
             }
@@ -571,6 +587,7 @@ function delTele(nn) {
         $.ajax({
             type: "POST",
             url: "<?php echo admin_url('usergame/uservinplayajax')?>",
+            timeout: 1000000, // Không có giới hạn thời gian
             data: {
                 username: $("#username").val(),
                 nickname: $("#nickname").val(),
@@ -615,6 +632,7 @@ function delTele(nn) {
                                 $.ajax({
                                     type: "POST",
                                     url: "<?php echo admin_url('usergame/uservinplayajax')?>",
+                                    timeout: 100000, // Không có giới hạn thời gian
                                     data: {
                                         username: $("#username").val(),
                                         nickname: $("#nickname").val(),
@@ -651,7 +669,7 @@ function delTele(nn) {
                                         $("#spinner").hide();
                                         $('#logaction').html("");
                                         $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                                    }, timeout: 20000
+                                    }, timeout: 600000
                                 });
                             }
                             oldPage = page;
@@ -665,7 +683,7 @@ function delTele(nn) {
                 $("#spinner").hide();
                 $('#logaction').html("");
                 $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-            }, timeout: 20000
+            }, timeout: 600000
         })
 
     };
@@ -698,6 +716,7 @@ function delTele(nn) {
         }
         return val;
     }
+
     $("#export").click(function () {
         $('#isEx').val(1);
         return;
@@ -705,7 +724,7 @@ function delTele(nn) {
 </script>
 <style>
     .pop-option {
-        color : #17a2b8;
+        color: #17a2b8;
         cursor: pointer;
     }
 </style>

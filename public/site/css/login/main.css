@@ -460,3 +460,21 @@ iframe {
     opacity: 1;
   }
 }
+
+.container-login100 {
+  background: #CCC;
+}
+
+.container-login100 .wrap-login100 {
+  padding: 50px;
+  width: 500px;
+}
+
+.container-login100 .login100-form {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container-login100 .login100-pic {
+  display: none;
+}

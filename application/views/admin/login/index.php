@@ -19,7 +19,7 @@
 
             <div class="login100-form validate-form">
 					<span class="login100-form-title">
-						Admin Login
+						CMS Admin Login
 					</span>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">

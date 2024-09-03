@@ -2,7 +2,7 @@
 
 class Napwin_report_model extends MY_Model
 {
-    var $table = 'log_money_user_nap_vin';
+    var $table = 'deposit_paygate';
 
     function search($nickName, $actionName, $toDate, $fromDate, $serviceName, $transId, $userId, $moneyExchange, $currentMoney, $fee, $page, $maxItem)
     {
@@ -18,42 +18,42 @@ class Napwin_report_model extends MY_Model
             ],
             'skip' => ($page - 1) * $maxItem,
             'limit' => $maxItem,
-            'sort' => ['trans_time' => -1] // Sắp xếp theo CreatedAt giảm dần (tùy chọn)
+            'sort' => ['CreatedAt' => -1] // Sắp xếp theo CreatedAt giảm dần (tùy chọn)
         ];
 
 //        $fromDate = "2023-10-22 00:30:55";
 //        $toDate = "2023-10-22 23:30:55";
         $conds = [
-            ['trans_time' => ['$gte' => $fromDate]],
-            ['trans_time' => ['$lte' => $toDate]]
+            ['CreatedAt' => ['$gte' => $fromDate]],
+            ['CreatedAt' => ['$lte' => $toDate]]
         ];
 
         if (strlen($nickName)) {
-            $conds[] = ['nick_name' => $nickName];
+            $conds[] = ['Nickname' => $nickName];
         }
 
         if (strlen($actionName)) {
-            $conds[] = ['action_name' => $actionName];
+            //$conds[] = ['action_name' => $actionName];
         }
 
         if (strlen($transId)) {
-            $conds[] = ['trans_id' => $transId];
+            $conds[] = ['ReferenceId' => $transId];
         }
 
         if (strlen($userId)) {
-            $conds[] = ['user_id' => $userId];
+            $conds[] = ['UserId' => $userId];
         }
 
         if (intval($currentMoney)) {
-            $conds[] = ['current_money' => ['$gte' => intval($currentMoney)]];
+            $conds[] = ['Amount' => ['$gte' => intval($currentMoney)]];
         }
 
         if (intval($moneyExchange)) {
-            $conds[] = ['money_exchange' => ['$gte' => intval($moneyExchange)]];
+            //$conds[] = ['money_exchange' => ['$gte' => intval($moneyExchange)]];
         }
 
         if (intval($fee)) {
-            $conds[] = ['fee' => ['$gte' => intval($fee)]];
+            $conds[] = ['AmountFee' => ['$gte' => intval($fee)]];
         }
 
         $filter = [
@@ -62,8 +62,10 @@ class Napwin_report_model extends MY_Model
 
         $results = $this->mongodb_library->find($filter, $options);
         $totalNap = 0;
-        foreach ($results as $result) {
-            $totalNap += intval(((array)$result)["money_exchange"]);
+        foreach ($results as &$result) {
+            (array)$result["action_name"] = (array)$result["UserApprove"];
+            (array)$result["money_exchange"] = intval(((array)$result)["Amount"])- intval(((array)$result)["AmountFee"]);
+            $totalNap += intval(((array)$result)["Amount"])- intval(((array)$result)["AmountFee"]);
         }
 
         $total = $this->mongodb_library->countDocuments($filter);

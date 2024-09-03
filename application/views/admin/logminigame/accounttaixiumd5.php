@@ -24,7 +24,7 @@
 
                 <table>
                     <tr>
-                        <td><label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                        <td><label for="param_name" class="formLeft" id="nameuser" style="min-width: auto;text-align: left;">Từ ngày:</label></td>
                         <td class="item">
 
                             <div class="input-group date" id="datetimepicker1">
@@ -36,7 +36,7 @@
                         </td>
 
                         <td>
-                            <label for="param_name" class="formLeft formtoDate"> Đến ngày: </label>
+                            <label for="param_name" class="formLeft formtoDate" style="min-width: auto;text-align: left;"> Đến ngày: </label>
                         </td>
                         <td class="item">
 
@@ -100,7 +100,7 @@
                     </tr>
                     </table>
                 </div>
-            <div class="formRow">
+            <div class="formRow" style="padding-left: 103px;">
                 <table>
                     <tr>
                         <td style="">
@@ -260,7 +260,7 @@
                                         $("#spinner").hide();
                                         $('#logaction').html("");
                                         $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages.");
-                                    },timeout : 180000
+                                    },timeout : 1800000
                                 });
                             }
                             oldPage = page;
@@ -274,7 +274,7 @@
                 $("#spinner").hide();
                 $('#logaction').html("");
                 $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages.");
-            },timeout : 180000
+            },timeout : 1800000
         })
 
     }

@@ -1,6 +1,6 @@
 <?php
 
-class CCU_model extends MY_Model
+class Ccu_model extends MY_Model
 {
     var $table = 'log_ccu';
 
@@ -8,6 +8,7 @@ class CCU_model extends MY_Model
     {
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($this->table);
+
         $results = $this->mongodb_library->find([
             '$and' => [
                 ['time_log' => ['$gte' => $fromDate]],

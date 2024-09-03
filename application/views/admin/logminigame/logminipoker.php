@@ -27,20 +27,20 @@
                 <table>
                     <tr>
                         <td>
-                            <label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                            <label for="param_name" class="formLeft" id="nameuser" style="min-width: auto;text-align: left;">Từ ngày:</label></td>
                         <td class="item">
                             <div class="input-group date" id="datetimepicker1">
-                                <input type="text" id="toDate" name="toDate" value="<?php echo $this->input->post('toDate') ?>"> <span class="input-group-addon">
+                                <input type="text" id="fromDate" name="fromDate" value="<?php echo $this->input->post('fromDate') ?>"> <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
 </span>
                             </div>                        </td>
 
                         <td>
-                            <label for="param_name" class="formLeft formtoDate"> Đến ngày: </label>
+                            <label for="param_name" class="formLeft formtoDate" style="min-width: auto;text-align: left;"> Đến ngày: </label>
                         </td>
                         <td class="item">
                             <div class="input-group date" id="datetimepicker2">
-                                <input type="text" id="fromDate" name="fromDate" value="<?php echo $this->input->post('fromDate') ?>"> <span class="input-group-addon">
+                                <input type="text" id="toDate" name="toDate" value="<?php echo $this->input->post('toDate') ?>"> <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
 </span>
                             </div>
@@ -53,9 +53,9 @@
                     <tr>
                         <td><label  class="session-1">Nick name:</label></td>
                         <td ><input type="text" class="session-2" id="nickname" value="<?php echo $this->input->post('nickname') ?>" name="nickname"></td>
-                        <td><label  id = "labelvin" class="money-type-1" style="margin-left: 19px">Phòng win:</label></td>
+                        <td hidden><label  id = "labelvin" class="money-type-1" style="margin-left: 19px">Phòng win:</label></tdhidden>
 
-                        <td><select id="menhgiavin" name="menhgiavin"
+                        <td hidden><select id="menhgiavin" name="menhgiavin"
                                     class="money-type-2" style="margin-left: 1px;width: 212px">
                                 <option value="" <?php if($this->input->post('menhgiavin')== "" ){echo "selected";} ?>>Chọn</option>
                                 <option value="100" <?php if($this->input->post('menhgiavin')== "100" ){echo "selected";} ?>>100 Win</option>
@@ -106,14 +106,12 @@
             <thead>
             <tr class="list-logminigame">
                 <td>STT</td>
+                <td>Phiên</td>
                 <td>Nick name</td>
-                <td style="width:100px;">Phòng chơi</td>
                 <td style="width:100px;">Kết quả</td>
                 <td>Tiền thưởng</td>
-                <td>Quân bài</td>
-                <td>Hũ hiện tại</td>
-                <td>Quỹ hiện tại</td>
-                <td>Loại tiền</td>
+                <td>Tiền thắng cược</td>
+                <td>Bước</td>
                 <td>Ngày tạo</td>
             </tr>
             </thead>
@@ -151,8 +149,8 @@ $(function () {
 
 });
 $("#search_tran").click(function () {
-    var fromDatetime = $("#toDate").val();
-    var toDatetime = $("#fromDate").val();
+    var fromDatetime = $("#fromDate").val();
+    var toDatetime = $("#toDate").val();
     if (fromDatetime > toDatetime) {
         alert('Ngày kết thúc phải lớn hơn ngày bắt đầu')
         return false;
@@ -160,22 +158,16 @@ $("#search_tran").click(function () {
 
 });
 
-function resultlogminipoker(stt,user_name,bet_value,result,prize,cards,current_pot,current_fund,money_type,time_log) {
+function resultlogminipoker(stt, reference_id, nick_name, bet_value, result, step, win_value, time_log) {
     var rs = "";
     rs += "<tr>";
     rs += "<td>" + stt + "</td>";
-    rs += "<td>" + user_name + "</td>";
-    rs += "<td>" + commaSeparateNumber(bet_value) + "</td>";
+    rs += "<td>" + reference_id + "</td>";
+    rs += "<td>" + nick_name + "</td>";
     rs += "<td>" + resultminipoker(result) + "</td>";
-    rs += "<td>" + commaSeparateNumber(prize) + "</td>";
-    rs += "<td>" + cards + "</td>";
-    rs += "<td>" + commaSeparateNumber(current_pot) + "</td>";
-    rs += "<td>" + commaSeparateNumber(current_fund) + "</td>";
-    if(money_type == 0){
-        rs += "<td>" + "xu" + "</td>";
-    }else if(money_type == 1){
-        rs += "<td>" + "win" + "</td>";
-    }
+    rs += "<td>" + commaSeparateNumber(bet_value) + "</td>";
+    rs += "<td>" + commaSeparateNumber(win_value) + "</td>";
+    rs += "<td>" + step + "</td>";
     rs += "<td>" + time_log + "</td>";
     rs += "</tr>";
     return rs;
@@ -210,7 +202,7 @@ $(document).ready(function () {
                     $("#resultsearch").html("");
                     stt = 1;
                     $.each(result.transactions, function (index, value) {
-                        result += resultlogminipoker(stt,value.user_name,value.bet_value,value.result,value.prize,value.cards,value.current_pot,value.current_fund,value.money_type,value.time_log);
+                        result += resultlogminipoker(stt, value.reference_id, value.nick_name, value.bet_value, value.result, value.step, value.win_value, value.time_log);
                         stt ++;
                     });
                     $('#logaction').html(result);
@@ -236,7 +228,7 @@ $(document).ready(function () {
                                         $("#spinner").hide();
                                         stt = (page - 1) * 50 + 1;
                                         $.each(result.transactions, function (index, value) {
-                                            result += resultlogminipoker(stt,value.user_name, value.bet_value, value.result, value.prize, value.cards, value.current_pot, value.current_fund, value.money_type, value.time_log);
+                                            result += resultlogminipoker(stt, value.reference_id, value.nick_name, value.bet_value, value.result, value.step, value.win_value, value.time_log);
                                             stt ++;
                                         });
                                         $('#logaction').html(result);
@@ -275,7 +267,7 @@ $(document).ready(function () {
                     $("#resultsearch").html("");
                     stt = 1;
                     $.each(result.transactions, function (index, value) {
-                        result += resultlogminipoker(stt,value.user_name,value.bet_value,value.result,value.prize,value.cards,value.current_pot,value.current_fund,value.money_type,value.time_log);
+                        result += resultlogminipoker(stt, value.reference_id, value.nick_name, value.bet_value, value.result, value.step, value.win_value, value.time_log);
                         stt ++;
                     });
                     $('#logaction').html(result);
@@ -301,7 +293,7 @@ $(document).ready(function () {
                                         $("#spinner").hide();
                                         stt = 1;
                                         $.each(result.transactions, function (index, value) {
-                                            result += resultlogminipoker(stt,value.user_name, value.bet_value, value.result, value.prize, value.cards, value.current_pot, value.current_fund, value.money_type, value.time_log);
+                                            result += resultlogminipoker(stt, value.reference_id, value.nick_name, value.bet_value, value.result, value.step, value.win_value, value.time_log);
                                             stt ++;
                                         });
                                         $('#logaction').html(result);
@@ -319,7 +311,7 @@ $(document).ready(function () {
 
 function resultminipoker(count) {
     var strresult;
-    switch (count) {
+    switch (count.length) {
         case 0:
             strresult = "Trượt";
             break;

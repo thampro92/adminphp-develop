@@ -24,7 +24,7 @@
 
                 <table>
                     <tr>
-                        <td><label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                        <td><label for="param_name" class="formLeft" id="nameuser" style="min-width: auto;text-align: left;">Từ ngày:</label></td>
                         <td class="item">
 
                             <div class="input-group date" id="datetimepicker1">
@@ -36,7 +36,7 @@
                         </td>
 
                         <td>
-                            <label for="param_name" class="formLeft formtoDate"> Đến ngày: </label>
+                            <label for="param_name" class="formLeft formtoDate" style="min-width: auto;text-align: left;"> Đến ngày: </label>
                         </td>
                         <td class="item">
 

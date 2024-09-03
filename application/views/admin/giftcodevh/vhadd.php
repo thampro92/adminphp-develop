@@ -43,7 +43,7 @@
                             <label id="labelvin" class="col-sm-2 control-label text-right">Mệnh giá</label>
 
                             <div class="col-sm-2" id="menhgiavin" style="padding: 0">
-                                <select name="menhgiavin" class="form-control" id="roomvin">
+                                <select name="menhgiavin" class="form-control" id="roomvin" style="width: 210px !important;padding-left: 0;padding-right: 0;">
                                     <?php foreach($listvin as $key => $row): ?>
                                         <option value="<?php echo $row ?>"><?php echo $row."K" ?></option>
                                     <?php endforeach; ?>
@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-sm-2"><input type="submit" value="Thêm giftcode" name="submit"
                                                          class="btn btn-primary pull-left" id="search_tran"></div>
-                            <div class="col-sm-1"><input type="reset" value="Reset" name="submit"
+                            <div class="col-sm-2"><input type="reset" value="Reset" name="submit"
                                                          class="btn btn-primary pull-left" id="reset"
                                                          onclick="window.location.href = '<?php echo admin_url('giftcodevh/vhadd') ?>'; ">
                             </div>

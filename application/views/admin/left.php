@@ -1,32 +1,29 @@
 <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="<?php echo base_url('admin') ?>">CMS Admin</a>
+            <a href="<?php echo base_url('admin') ?>"><?php echo $admin_info->UserName ?></a>
             <div id="close-sidebar">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
-        <div class="sidebar-header">
-            <div class="user-pic">
-                <img class="img-responsive img-rounded" src="<?php echo public_url('admin') ?>/images/logo_login.png"
-                     alt="User picture">
-            </div>
-            <div class="user-info">
-            <span class="user-name">
-                <span><?php echo $admin_info->UserName ?></span>
-            <a title="Đổi mật khẩu" style="margin: -30px; padding: 30px;"
-               class="tipS" data-toggle="modal"
-               data-target="#changePassword-modal">
-                        <img src="<?php echo public_url('admin') ?>/images/icons/change-pwd.png"/>
-            </a>
-          </span>
-                <span class="user-role"><?php echo $admin_info->FullName ?></span>
-                <span class="user-status" style="display: none">
-                    <i class="fa fa-circle"></i>
-                    người chơi</span>
-                </span>
-            </div>
-        </div>
+<!--        <div class="sidebar-header">-->
+            <!--            <div class="user-pic">-->
+            <!--                <img class="img-responsive img-rounded" src="-->
+            <?php //echo public_url('admin') ?><!--/images/logo_login.png"-->
+            <!--                     alt="User picture">-->
+            <!--            </div>-->
+<!--            <div class="user-info">-->
+<!--            <span class="user-name">-->
+<!--                <span>--><?php //echo $admin_info->UserName ?><!--</span>-->
+<!---->
+<!--          </span>-->
+<!--                <span class="user-role">--><?php //echo $admin_info->FullName ?><!--</span>-->
+<!--                <span class="user-status" style="display: none">-->
+<!--                    <i class="fa fa-circle"></i>-->
+<!--                    người chơi</span>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--        </div>-->
         <!-- sidebar-header  -->
 
         <div class="sidebar-menu">
@@ -55,6 +52,13 @@
         <!--        </a>-->
         <a href="<?php echo admin_url('admin/logout') ?>">
             <i class="fa fa-power-off"></i>
+        </a>
+        <a title="Đổi mật khẩu" style="margin: -30px; padding: 30px;"
+           class="tipS" data-toggle="modal"
+           data-target="#changePassword-modal">
+            <i class="fa fa-key"></i>
+            <!--            <img style="width: 13px;height: 13px" src="-->
+            <?php //echo public_url('admin') ?><!--/images/icons/change-pwd.png"/>-->
         </a>
     </div>
 </nav>

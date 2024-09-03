@@ -67,12 +67,12 @@
 
         function lux52slotajax()
         {
-            canMenu('loggameslot/vb52slot');
+//            canMenu('loggameslot/vb52slot');
             $nickName = urlencode($this->input->post("nickName"));
             $transId = urlencode($this->input->post("transId"));
             $bet_value = $this->input->post("bet_value");
-            $toDate = urlencode($this->input->post("toDate"));
-            $fromDate = urlencode($this->input->post("fromDate"));
+            $toDate = ($this->input->post("toDate"));
+            $fromDate = ($this->input->post("fromDate"));
             $page = urlencode($this->input->post("page"));
             $game = urlencode($this->input->post("game"));
 

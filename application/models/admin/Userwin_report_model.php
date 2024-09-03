@@ -2,7 +2,7 @@
 
 class Userwin_report_model extends MY_Model
 {
-    var $table = 'log_money_user_vin';
+    var $table = 'user_log_money_freezes';
 
     function search($nickName, $toDate, $fromDate, $game, $transId, $page, $page_size)
     {
@@ -19,8 +19,8 @@ class Userwin_report_model extends MY_Model
             'sort' => ['trans_time' => -1] // Sắp xếp theo CreatedAt giảm dần (tùy chọn)
         ];
 
-        $fromDate = "2024-07-09 15:12:29";
-        $toDate = "2024-08-09 23:12:29";
+//        $fromDate = "2024-08-25 00:12:29";
+//        $toDate = "2024-08-25 23:12:29";
 
         $conds = [];
         if (strlen($fromDate)) {

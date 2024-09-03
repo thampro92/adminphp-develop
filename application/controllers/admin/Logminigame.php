@@ -602,7 +602,8 @@ class Logminigame extends MY_Controller
         $toDate = $this->input->post("toDate");
         $fromDate = $this->input->post("fromDate");
         $pages = $this->input->post("pages");
-        //$datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=119&rid=' . $phienbc . '&r=' . $room . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages);
+//        $datainfo = $this->get_data_curl($this->config->item('api_backend2') . '?c=119&rid=' . $phienbc . '&r=' . $room . '&ts=' . urlencode($toDate) . '&te=' . urlencode($fromDate) . '&p=' . $pages);
+
         if ($this->input->is_ajax_request()) {
             $this->load->model("admin/logminigame_model");
             $rs = $this->logminigame_model->logphienbaucua($phienbc, $room, $fromDate, $toDate, $pages);

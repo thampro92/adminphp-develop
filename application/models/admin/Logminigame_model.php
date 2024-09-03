@@ -8,8 +8,8 @@ class Logminigame_model extends MY_Model
     var $table3 = 'tai_xiu_md5_results';
     var $table4 = 'tai_xiu_md5_transactions';
     var $table5 = 'bau_cua_results';
-    var $table6 = 'bau_cua_transaction';
-    var $table7 = 'log_mini_poker';
+    var $table6 = 'bau_cua_transactions';
+    var $table7 = 'caothap_transactions';
 
     function lichsutaixiu($phientx, $fromDate, $toDate, $money, $pages)
     {
@@ -425,32 +425,22 @@ class Logminigame_model extends MY_Model
         $projection = [
             '_id' => 0,
             'reference_id' => 1,
-            'room' => 1,
-            'min_bet_value' => 1,
             'dice1' => 1,
             'dice2' => 1,
             'dice3' => 1,
-            'x_pot' => 1,
-            'x_value' => 1,
-            'bet_value' => 1,
-            'bet_bau' => 1,
-            'bet_cua' => 1,
-            'bet_tom' => 1,
-            'bet_ca' => 1,
-            'bet_ga' => 1,
-            'bet_huou' => 1,
-            'prize' => 1,
-            'prize_bau' => 1,
-            'prize_cua' => 1,
-            'prize_tom' => 1,
-            'prize_ca' => 1,
-            'prize_ga' => 1,
-            'prize_huou' => 1,
-            'time_log' => 1,
-            'total' => 1,
-            'totalBet' => 1,
-            'totalPrize' => 1,
-            'totalMoney' => 1
+            'total_value' => 1,
+            'total_bau' => 1,
+            'total_cua' => 1,
+            'total_tom' => 1,
+            'total_ca' => 1,
+            'total_ga' => 1,
+            'total_huou' => '$total_huu',
+            "total_bet_value" => 1,
+            "total_win_value" => 1,
+            "total_fee" => 1,
+            'create_time' => 1,
+            'game' => 1,
+            'status' => 1
         ];
 
         $options = [
@@ -480,6 +470,11 @@ class Logminigame_model extends MY_Model
         }
 
         $results = $this->mongodb_library->find($filter, $options);
+        foreach ($results as &$result) {
+            if (isset($result['create_time'])) {
+                $result['create_time'] = $result['create_time']->toDateTime()->format('Y-m-d H:i:s');
+            }
+        }
         $total = $this->mongodb_library->countDocuments($filter);
 
         return [
@@ -510,26 +505,27 @@ class Logminigame_model extends MY_Model
         $projection = [
             '_id' => 0,
             'referent_id' => '$reference_id',
+            'user_id' => 1,
+            'nick_name' => 1,
             'bet_value' => 1,
-            'bet_bau' => 1,
-            'bet_ca' => 1,
-            'bet_cua' => 1,
-            'bet_ga' => 1,
-            'bet_huou' => 1,
-            'bet_tom' => 1,
-            'dices' => 1,
-            'money_exchange' => 1,
+            'bet_side' => 1,
+            'bet_side_name' => 1,
+            'win_value' => 1,
             'money_type' => 1,
-            'prize' => 1,
-            'prize_bau' => 1,
-            'prize_cua' => 1,
-            'prize_tom' => 1,
-            'prize_ca' => 1,
-            'prize_ga' => 1,
-            'prize_huou' => 1,
-            'time_log' => 1,
-            'room' => 1,
-            'user_name' => 1
+            'create_time' => 1,
+            'crDate' => 1,
+            'game' => 1,
+            'status' => 1,
+            'input_time' => 1,
+            'fee' => 1,
+            'is_bot' => 1,
+            'createAt' => [
+                '$dateToString' => [
+                    'format' => '%d-%m-%Y %H:%M:%S',
+                    'date' => '$create_time',
+                    'timezone' => '+00:00'
+                ]
+            ]
         ];
 
         $options = [
@@ -548,7 +544,7 @@ class Logminigame_model extends MY_Model
         }
 
         if (strlen($nickname)) {
-            $conds[] = ['user_name' => $nickname];
+            $conds[] = ['nick_name' => $nickname];
         }
 
         if (strlen($roomvin) && intval($roomvin) !== -1) {
@@ -572,7 +568,7 @@ class Logminigame_model extends MY_Model
             [
                 '$group' => [
                     '_id' => null,
-                    'distinctNickNames' => ['$addToSet' => '$user_name']
+                    'distinctNickNames' => ['$addToSet' => '$nick_name']
                 ]
             ],
             [
@@ -611,15 +607,20 @@ class Logminigame_model extends MY_Model
         $maxItem = 50;
 
         $projection = [
-            "user_name"=> 1,
-            "bet_value"=> 1,
-            "result"=> 1,
-            "prize"=> 1,
-            "cards"=> 1,
-            "current_pot"=> 1,
-            "current_fund"=> 1,
-            "money_type"=> 1,
-            "time_log"=> 1
+            "nick_name" => 1,
+            "reference_id" => 1,
+            "bet_value" => 1,
+            "result" => 1,
+            "step" => 1,
+            "win_value" => 1,
+            "jackpot" => 1,
+            "time_log" => [
+                '$dateToString' => [
+                    'format' => '%d-%m-%Y %H:%M:%S',
+                    'date' => '$create_time',
+                    'timezone' => '+00:00'
+                ]
+            ]
         ];
 
         $options = [
@@ -634,7 +635,7 @@ class Logminigame_model extends MY_Model
         ];
 
         if (strlen($nickname)) {
-            $conds[] = ['user_name' => $nickname];
+            $conds[] = ['nick_name' => $nickname];
         }
 
         if (strlen($roomvin) && intval($roomvin)) {
@@ -658,7 +659,7 @@ class Logminigame_model extends MY_Model
             [
                 '$group' => [
                     '_id' => null,
-                    'distinctNickNames' => ['$addToSet' => '$user_name']
+                    'distinctNickNames' => ['$addToSet' => '$nick_name']
                 ]
             ],
             [

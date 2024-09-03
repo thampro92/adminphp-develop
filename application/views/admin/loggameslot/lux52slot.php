@@ -47,7 +47,7 @@
                     </table> -->
                     <table>
                         <tr>
-                            <td><label class="money-type-1" style="margin-left: 7px">Slot:</label></td>
+                            <td><label class="money-type-1" style="margin-left: 7px;width: 100px">Slot:</label></td>
                             <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="game" name="game">
                                     <option value="slot1" <?php if($this->input->post('game') == "slot1"){echo "selected";} ?>>Lion King</option>
                                     <option value="slot2" <?php if($this->input->post('game') == "slot2"){echo "selected";} ?>>Scooby Doo</option>
@@ -65,9 +65,9 @@
                         <tr>
 
                             <td>
-                                <label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                                <label for="param_name" class="formLeft" id="nameuser" style="min-width: auto;text-align: left;margin-left: -13px !important;">Từ ngày:</label></td>
                             <td class="item">
-                                <div class="input-group date" id="datetimepicker1">
+                                <div class="input-group date" id="datetimepicker1" style="width: 218px !important;">
                                     <input type="text" id="fromDate" name="fromDate"
                                            value="<?php echo $this->input->post('fromDate') ?>"> <span
                                         class="input-group-addon">
@@ -76,11 +76,11 @@
                                 </div>
                             </td>
                             <td>
-                                <label for="param_name" class="formLeft formtoDate"> Đến ngày: </label>
+                                <label for="param_name" class="formLeft formtoDate" style="min-width: auto;text-align: left;padding: 0"> Đến ngày: </label>
                             </td>
                             <td class="item">
 
-                                <div class="input-group date" id="datetimepicker2">
+                                <div class="input-group date" id="datetimepicker2" style="width: 218px !important;">
                                     <input type="text" id="toDate" name="toDate"
                                            value="<?php echo $this->input->post('toDate') ?>"> <span
                                         class="input-group-addon">
@@ -100,7 +100,7 @@
                             <td><input type="text" class="session-2"
                                        id="transId" value="<?php echo $this->input->post('transId') ?>" name="transId">
                             </td>
-                            <td><label class="money-type-1">Tiền cược:</label></td>
+                            <td><label class="money-type-1" style="text-align: left;width: 100px;margin-left: 18px;">Tiền cược:</label></td>
                             <td><input type="text" class="money-type-2"
                                        id="bet_value" value="<?php echo $this->input->post('bet_value') ?>"
                                        name="bet_value"></td>
@@ -117,7 +117,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="formRow">
+                <div class="formRow" style="padding-left: 100px">
                     <table>
                         <tr>
                             <td style="">
@@ -272,7 +272,7 @@
                                         $('#logaction').html("");
                                         $("#spinner").hide();
                                         $("#error-popup").modal("show");
-                                    }, timeout: 40000
+                                    }, timeout: 400000
                                 });
                             }
                             oldpage = page;
@@ -283,7 +283,7 @@
                 $('#logaction').html("");
                 $("#spinner").hide();
                 $("#error-popup").modal("show");
-            }, timeout: 40000
+            }, timeout: 400000
         })
     })
 

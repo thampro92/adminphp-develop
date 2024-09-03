@@ -38,7 +38,7 @@
                                 <div class="input-group date" id="datetimepicker1">
                                     <input type="text" id="fromTime" name="fromTime"
                                            value="<?php echo $this->input->post('fromTime') ?>">
-                                            <span class="input-group-addon">
+                                    <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                 </div>
@@ -51,7 +51,7 @@
                                 <div class="input-group date" id="datetimepicker2">
                                     <input type="text" id="endTime" name="endTime"
                                            value="<?php echo $this->input->post('endTime') ?>">
-                                            <span class="input-group-addon">
+                                    <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                 </div>
@@ -184,18 +184,13 @@
                 <div class="formRow">
                     <table>
                         <tr>
-                            <td >
-                                <input type="submit" id="search_tran" value="Tìm kiếm" class="button blueB"
-                                       style="margin-left: 70px">
-                            </td>
-                            <td>
+                            <td style="display: flex;padding-left: 120px">
+                                <input type="submit" id="search_tran" value="Tìm kiếm" class="button blueB"/>
                                 <input type="reset"
                                        onclick="window.location.href = '<?php echo admin_url('withdraw/userbot') ?>'; "
                                        value="Reset" class="basic" style="margin-left: 20px">
-                            </td>
-                            <td>
-                                <span style="margin-left: 20px">
-                                    <?php $this->load->view('/admin/component/exportexcel', ['pre_file_name'=>'withdraw']); ?>
+                                <span style="margin-left: 20px; display: flex">
+                                    <?php $this->load->view('/admin/component/exportexcel', ['pre_file_name' => 'withdraw']); ?>
                                 </span>
                             </td>
                         </tr>
@@ -276,7 +271,7 @@
         "12":
             {"text": "Yêu cầu rút tiền", "label": "request", "color": "status-request"},
     }
-    $(document).ready(function(){
+    $(document).ready(function () {
         var startDate = moment(new Date()).hours(0).minutes(0).seconds(0).milliseconds(0)
         var endDate = moment(new Date()).hours(23).minutes(59).seconds(59).milliseconds(59)
 
@@ -325,11 +320,11 @@
         var rs = "";
 
 
-        if(value.warning_type == 1){
+        if (value.warning_type == 1) {
             rs += "<tr style='background:red;'>";
-        } else if(value.warning_type == 2){
+        } else if (value.warning_type == 2) {
             rs += "<tr style='background:yellow;'>";
-        }else{
+        } else {
             rs += "<tr>";
         }
 
@@ -358,14 +353,14 @@
                         ('<a href="" title="Chấp nhận" class="tipS accept-action verify_action text-primary btn-circle"> <i class="fa fa-check fa-2x" aria-hidden="true"></i></a>' +
                             '<a href="" title="Từ chối" class="tipS reject-action verify_action text-danger btn-circle">  <i class="fa fa-times fa-2x" aria-hidden="true"></i></a>')
                         : ''
-                    ) : ''
+                ) : ''
 
 
             ) +
             "</td>";
         rs += "<td class='option'>" +
-            `<div class="pop-option mt-3"  "><a href= "<?php echo admin_url('report/userwintrans/')?>` + "/" + value.Nickname  + `"   target="_blank">Lịch sử GD</a></div>` +
-            `<div class="pop-option mt-3"  "><a href="<?php echo admin_url('report/naprut')?>` + "/" + value.Nickname  + `"  target="_blank">Nạp/Rút</a></div>` +
+            `<div class="pop-option mt-3"  "><a href= "<?php echo admin_url('report/userwintrans/')?>` + "/" + value.Nickname + `"   target="_blank">Lịch sử GD</a></div>` +
+            `<div class="pop-option mt-3"  "><a href="<?php echo admin_url('report/naprut')?>` + "/" + value.Nickname + `"  target="_blank">Nạp/Rút</a></div>` +
             "</td>";
         return rs;
     }
@@ -373,7 +368,7 @@
     function crPoppover(value) {
         return ' data-toggle="popover" data-title="Thông tin chi tiết" data-html=true data-trigger="hover" data-placement="left" ' +
             'data-content="' +
-                Object.entries(value).map( ([x,y]) => `${x} : ${y}`).join("</br>")
+            Object.entries(value).map(([x, y]) => `${x} : ${y}`).join("</br>")
             + '" '
     }
 
@@ -391,7 +386,7 @@
             '<tr><td>Trạng thái<td/><td>' + status_dict[value.Status].text + '<td/></tr>' +
             (huy == 1 ?
                 '<tr><td ><label class="formLeft">Hoàn tiền:</label></td><td class="item"><select id="rf" name="rf" class="my-input-class"><option value="0">Không Hoàn</option><option value="1">Hoàn Tiền</option></select></td></tr>'
-            : '') +
+                : '') +
 
 
             // '<tr><td>Lý do:<td/><td><input type="text" class="my-input-class" id="reason" value="" name="reason" style="width: 100%"><td/></tr>' +
@@ -399,13 +394,13 @@
     }
 
     function handleActionListener() {
-        $('.tipS.view-action').click( function (e){
+        $('.tipS.view-action').click(function (e) {
             e.preventDefault()
         })
 
-        $('.tipS.accept-action').click( function (e){
+        $('.tipS.accept-action').click(function (e) {
             let item_index = $(this).closest('td').siblings('.stt').text()
-            let value = list_data[(item_index -1)%page_size]
+            let value = list_data[(item_index - 1) % page_size]
 
             e.preventDefault()
 
@@ -414,7 +409,7 @@
                 type: "POST",
                 url: "<?php echo admin_url('withdraw/list_provider_support_ajax')?>",
                 data: {
-                    "orderId":  value.Id
+                    "orderId": value.Id
                 },
                 dataType: 'json',
                 success: function (response) {
@@ -422,7 +417,7 @@
                     if (response.success) {
                         $("#resultsearch").html("");
 
-                        if(response.data == "" ||  response.data == "[ ]" || response.data.length == 0 ) {
+                        if (response.data == "" || response.data == "[ ]" || response.data.length == 0) {
                             bootbox.alert({
                                 message: `<i class="fa fa-times-circle text-danger" aria-hidden="true"></i> Không có nhà cung cấp thỏa mãn <b>orderId ${value.Id}</b>`,
                                 backdrop: true,
@@ -432,7 +427,7 @@
                             // call data get provider to show
                             bootbox.prompt({
                                 title: "Chấp nhận giao dịch!",
-                                message: messageBody(value, 0)+ "</br><p><b>Nhập lý do Duyệt Giao Dịch:</b</p>", //+ '</br><p><b>Chọn 1 trong các tài khoản dưới để hoàn thành giao dịch:</b</p>',
+                                message: messageBody(value, 0) + "</br><p><b>Nhập lý do Duyệt Giao Dịch:</b</p>", //+ '</br><p><b>Chọn 1 trong các tài khoản dưới để hoàn thành giao dịch:</b</p>',
                                 //inputType: 'radio',
                                 //inputOptions: JSON.parse(response.data).map(x => ({
                                 //    'text': x,
@@ -446,7 +441,7 @@
                                             type: "POST",
                                             url: "<?php echo admin_url('withdraw/accept_ajax')?>",
                                             data: {
-                                                "orderId":  value.Id,
+                                                "orderId": value.Id,
                                                 "nickName": value.Nickname,
                                                 "providerName": "manualbank",
                                                 "reason": result
@@ -492,25 +487,26 @@
                     console.error(e.message)
                     $("#spinner").hide();
                     $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                }, timeout: 20000})
+                }, timeout: 20000
+            })
         })
 
-        $('.tipS.reject-action').click( function (e){
+        $('.tipS.reject-action').click(function (e) {
             let item_index = $(this).closest('td').siblings('.stt').text()
-            let value = list_data[(item_index -1)%page_size]
+            let value = list_data[(item_index - 1) % page_size]
             e.preventDefault()
 
             bootbox.prompt({
                 title: `Từ chối giao dịch!`,
                 message: messageBody(value, 1) + "</br><p><b>Nhập lý do từ chối:</b</p>",
                 callback: function (result) {
-                    if(result) {
+                    if (result) {
                         $("#spinner").show();
                         $.ajax({
                             type: "POST",
                             url: "<?php echo admin_url('withdraw/reject_ajax')?>",
                             data: {
-                                "orderId":  value.Id,
+                                "orderId": value.Id,
                                 "reason": result,
                                 "rf": $("#rf").val()
                             },
@@ -534,7 +530,8 @@
                                 console.error(e.message)
                                 $("#spinner").hide();
                                 $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                            }, timeout: 20000})
+                            }, timeout: 20000
+                        })
                     }
                 }
             });

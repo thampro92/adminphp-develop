@@ -33,39 +33,39 @@
 
 
                             <td>
-                                <label for="param_name" class="formLeft"> Tên Game: </label>
+                                <label for="param_name" class="formLeft" style="min-width: auto;text-align: left;padding: 0"> Tên Game: </label>
                             </td>
                             <td class="item">
                                 <select id="namegame" name="namegame" class="my-input-class">
-                                    <option value="BaCay" <?php if ($this->input->post('namegame') == "BaCay") {
+                                    <!-- <option hidden value="BaCay" <?php if ($this->input->post('namegame') == "BaCay") {
                                         echo "selected";
                                     } ?>>Ba Cây
-                                    </option>
+                                    </option>-->
                                     <option value="XocDia" <?php if ($this->input->post('namegame') == "XocDia") {
                                         echo "selected";
                                     } ?>>Xóc Đĩa
                                     </option>
-                                    <option value="Tlmn" <?php if ($this->input->post('namegame') == "Tlmn") {
+                                    <option hidden value="Tlmn" <?php if ($this->input->post('namegame') == "Tlmn") {
                                         echo "selected";
                                     } ?>>Tiến Lên Miền Nam
                                     </option>
-                                    <option value="Binh" <?php if ($this->input->post('namegame') == "Binh") {
+                                    <option hidden value="Binh" <?php if ($this->input->post('namegame') == "Binh") {
                                         echo "selected";
                                     } ?>>Mậu Binh
                                     </option>
-                                    <option value="Lieng" <?php if ($this->input->post('namegame') == "Lieng") {
+                                    <option hidden value="Lieng" <?php if ($this->input->post('namegame') == "Lieng") {
                                         echo "selected";
                                     } ?>>Liêng
                                     </option>
-                                    <option value="BaiCao" <?php if ($this->input->post('namegame') == "BaiCao") {
+                                    <option hidden value="BaiCao" <?php if ($this->input->post('namegame') == "BaiCao") {
                                         echo "selected";
                                     } ?>>Bài Cào
                                     </option>
-                                    <option value="Sam" <?php if ($this->input->post('namegame') == "Sam") {
+                                    <option hidden value="Sam" <?php if ($this->input->post('namegame') == "Sam") {
                                         echo "selected";
                                     } ?>>Sâm
                                     </option>
-                                    <option value="Poker" <?php if ($this->input->post('namegame') == "Poker") {
+                                    <option hidden value="Poker" <?php if ($this->input->post('namegame') == "Poker") {
                                         echo "selected";
                                     } ?>>Poker
                                     </option>
@@ -77,7 +77,7 @@
                             </td>
 
                             <td>
-                                <label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                                <label for="param_name" class="formLeft" id="nameuser" style="margin: 0 !important;min-width: auto;text-align: left;">Từ ngày:</label></td>
                             <td class="item">
                                 <div class="input-group date" id="datetimepicker1">
                                     <input type="text" id="fromDate" name="fromDate" value="<?= empty($this->input->get('fromDate')) ? $this->input->post('fromDate') : $this->input->get('fromDate') ?>"> <span class="input-group-addon">
@@ -86,7 +86,7 @@
                                 </div>
                             </td>
                             <td>
-                                <label for="param_name" class="formLeft toDate"> Đến ngày: </label>
+                                <label for="param_name" class="formLeft toDate" style="margin: 0 !important;min-width: auto;text-align: left;"> Đến ngày: </label>
                             </td>
                             <td class="item">
 
@@ -103,10 +103,10 @@
                 <div class="formRow">
                     <table>
                         <tr>
-                            <td><label class="session-1">Phiên:</label></td>
-                            <td><input class="session-2" type="text" id="session_name" value="<?= empty($this->input->get('session_name')) ? $this->input->post('session_name') : $this->input->get('session_name') ?>" name="session_name"></td>
-                            <td><label class="session-1" style="margin-left: 18px;">Nick name:</label></td>
-                            <td><input class="session-2" style="margin-left: 1px;" type="text" id="filter_iname" value="<?= empty($this->input->get('name')) ?  $this->input->post('name') : $this->input->get('name') ?>" name="name"></td>
+                            <td><label class="session-1" style="margin: 0;width: 120px;">Phiên:</label></td>
+                            <td><input class="session-2" style="margin: 0;width: 208px" type="text" id="session_name" value="<?= empty($this->input->get('session_name')) ? $this->input->post('session_name') : $this->input->get('session_name') ?>" name="session_name"></td>
+                            <td><label class="session-1" style="width: 120px;margin: 0 !important;padding-left: 22px;">Nick name:</label></td>
+                            <td><input class="session-2" style="margin: 0 !important;width: 208px" type="text" id="filter_iname" value="<?= empty($this->input->get('name')) ?  $this->input->post('name') : $this->input->get('name') ?>" name="name"></td>
                             <td hidden><label class="money-type-1">Loại tiền:</label></td>
                             <td hidden><select class="money-type-2" id="moneytype" name="moneytype">
                                     <option value="" <?php if($this->input->post('moneytype') == ""){echo "selected";} ?>>Chọn</option>
@@ -116,7 +116,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="formRow">
+                <div class="formRow" style="padding-left: 116px">
                     <table>
                         <tr>
                             <td style="">

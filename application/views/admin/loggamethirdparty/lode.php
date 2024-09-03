@@ -12,15 +12,15 @@
     <div class="widget backaccount">
         <form class="list_filter form" action="<?php echo admin_url('loggamethirdparty/lode') ?>" method="post">
             <div class="formRow row">
-                <div class="col-sm-1">
-                    <label for="giftCode">Nick name : </label>
+                <div class="col-sm-2">
+                    <label for="giftCode">Nick name:</label>
                 </div>
                 <div class="col-sm-2">
                     <input type="text" id="nn" value="<?php echo $this->input->post('nn') ?>" name="nn">
                 </div>
 
                 <div class="col-sm-1">
-                    <label for="giftCode">Từ ngày : </label>
+                    <label for="giftCode">Từ ngày:</label>
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group" id="datetimepicker1">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-sm-1">
-                    <label for="giftCode">Đến ngày : </label>
+                    <label for="giftCode">Đến ngày:</label>
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group" id="datetimepicker2">
@@ -43,10 +43,10 @@
                 </div>
             </div>
             <div class="formRow row">
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <input type="submit" id="search_tran" value="Tìm kiếm" class="button blueB">
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <input type="reset" onclick="window.location.href = '<?php echo admin_url('loggamethirdparty/lode') ?>';" value="Reset" class="basic">
                 </div>
             </div>

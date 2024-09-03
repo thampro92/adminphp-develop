@@ -45,6 +45,7 @@
                                        style="margin-left: 60px;margin-bottom:-2px;width: 100px">Phiên:</label></td>
                             <td>
                                 <input type="text" class="session-2"
+                                       style="width: 166px !important;"
                                        id="phientx" value="<?= empty($this->input->get('phientx')) ? $this->input->post('phientx') : $this->input->get('phientx')?>"
                                        name="phientx">
                             </td>

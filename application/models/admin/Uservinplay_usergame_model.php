@@ -18,8 +18,9 @@ class Uservinplay_usergame_model extends MY_Model
         $accounts = $accountInfo['data'];
         $totalRecord = intval($accountInfo['totalCount']);
         $transactions = [];
+
         foreach ($accounts as $account) {
-            $transactions[] = $this->getTransactions($fromDate, $toDate, $account['Username'], $account['Nickname']);
+            $transactions[] = $this->getTransactions($fromDate, $toDate, $account['Username'], $account['Nickname'],  $account['CreatedAt']);
         }
 
         return [
@@ -33,7 +34,7 @@ class Uservinplay_usergame_model extends MY_Model
         ];
     }
 
-    protected function getTransactions($fromDate, $toDate, $Username, $Nickname)
+    protected function getTransactions($fromDate, $toDate, $Username, $Nickname, $CreatedAt)
     {
         return [
             "username" => $Username,
@@ -51,7 +52,7 @@ class Uservinplay_usergame_model extends MY_Model
             "vippointSave" => 0,
             "loginOtp" => -1,
             "bot" => false,
-            "createTime" => "",
+            "createTime" => $CreatedAt,
             "securityTime" => null,
             "status" => 0,
             "hasMobileSecurity" => false,
@@ -65,7 +66,6 @@ class Uservinplay_usergame_model extends MY_Model
 
     protected function getAmount($table, $fromDate, $toDate, $Username, $Nickname)
     {
-        $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($table);
 
         $match = [
@@ -109,9 +109,8 @@ class Uservinplay_usergame_model extends MY_Model
     {
         $this->load->library('mongodb_library');
         $this->mongodb_library->selectCollection($table);
-
-        $fromDate = "2023-10-22 00:30:55";
-        $toDate = "2023-10-22 23:30:55";
+//        $fromDate = "2023-10-22 00:30:55";
+//        $toDate = "2023-10-22 23:30:55";
         //Lay ds nickname o 2 bang 1,2
 
         $match = ['IsDeleted' => false];
@@ -146,14 +145,15 @@ class Uservinplay_usergame_model extends MY_Model
                         'Nickname' => '$Nickname'
                     ],
                     'CreatedAt' => ['$first' => '$CreatedAt'],
-                    'UserId' => ['$first' => '$UserId']
+//                    'UserId' => ['$first' => '$UserId']
                 ]
             ],
             [
                 '$project' => [
                     '_id' => 0,               // Ẩn trường _id
                     'Username' => '$_id.Username',
-                    'Nickname' => '$_id.Nickname'
+                    'Nickname' => '$_id.Nickname',
+                    'CreatedAt' => 1
                 ]
             ],
             [

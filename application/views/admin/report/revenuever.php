@@ -37,6 +37,7 @@
                                        class="formLeft"> Từ ngày: </label>
                             </td>
                             <td class="item"><input name="fromDate"
+                                                    style="width: 100px"
                                                     value="<?php echo $this->input->post('fromDate') ?>"
                                                     id="fromDate" type="text" class="datepicker-input"/></td>
 
@@ -44,6 +45,7 @@
                                 <label for="param_name" class="formLeft" id="nameuser"
                                        style="margin-left: 50px;margin-bottom:-2px;width: 110px">Đến ngày:</label></td>
                             <td class="item"><input name="toDate"
+                                                    style="width: 100px"
                                                     value="<?php echo $this->input->post('toDate') ?>"
                                                     id="toDate" type="text" class="datepicker"/></td>
 
@@ -51,7 +53,7 @@
                             <td>
                                 <label for="param_name" class="formLeft" id="nameuser"
                                        style="margin-left: 50px;margin-bottom:-2px;width: 100px">Game:</label></td>
-                            <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="game" name="game" onchange="getInputSelect(this)">
+                            <td><select class="money-type-2" style="margin-left: 1px; width: 100px!important;" id="game" name="game" onchange="getInputSelect(this)">
 
                                     <option value="" <?php if($this->input->post('game') == ""){echo "selected";} ?>>Tất Cả Game</option>
                                     <option value="vb" <?php if($this->input->post('game') == "vb"){echo "selected";} ?>>VB52</option>
@@ -63,7 +65,7 @@
                                 <label for="param_name" class="formLeft" id="nameuser"
                                        style="margin-left: 50px;margin-bottom:-2px;width: 100px">Version:</label></td>
 
-                            <td><select class="money-type-2" style="margin-left: 1px; width: 219px!important;" id="version" name="version">
+                            <td><select class="money-type-2" style="margin-left: 1px; width: 100px!important;" id="version" name="version">
 
                                     <option value="" <?php if($this->input->post('version') == ""){echo "selected";} ?>>Tất Cả Version VB52 + Lux52</option>
 
@@ -244,7 +246,7 @@
                                         $('#logaction').html("");
                                         $("#spinner").hide();
                                         $("#error-popup").modal("show");
-                                    }, timeout: 40000
+                                    }, timeout: 400000
                                 });
                             }
                             oldpage = page;
@@ -254,7 +256,7 @@
                 $('#logaction').html("");
                 $("#spinner").hide();
                 $("#error-popup").modal("show");
-            }, timeout: 40000
+            }, timeout: 400000
         })
     }
 

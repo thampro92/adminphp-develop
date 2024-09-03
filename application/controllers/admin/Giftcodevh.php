@@ -103,7 +103,7 @@ class Giftcodevh extends MY_Controller
         $menhgiavin = urlencode($this->input->post("menhgiavin"));
         $soluong = urlencode($this->input->post("soluong"));
         $camp = urlencode($this->input->post("camp"));
-        $endTime = urlencode($this->input->post("endTime"));
+        $endTime = ($this->input->post("endTime"));
         $page = urlencode($this->input->post("page"));
         $page_size = urlencode($this->input->post("page_size"));
         if ($this->input->is_ajax_request()) {

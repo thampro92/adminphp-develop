@@ -2,7 +2,7 @@
 
 class Userlogin_usergame_model extends MY_Model
 {
-    var $table = 'user_login_info';
+    var $table = 'user_log_logins';
 
     function search($nickname, $iplogin, $devicelogin, $toDate, $fromDate, $status, $pages)
     {
@@ -57,6 +57,9 @@ class Userlogin_usergame_model extends MY_Model
         $results = $this->mongodb_library->find($filter, $options);
         foreach ($results as &$result){
             $result['security'] = false;
+            if (isset($result['time_log'])) {
+                $result['time_log'] = $result['time_log']->toDateTime()->format('Y-m-d H:i:s');
+            }
         }
 
         $total = $this->mongodb_library->countDocuments($filter);

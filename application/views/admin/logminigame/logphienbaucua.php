@@ -29,9 +29,11 @@
                     <table>
                         <tr>
                             <td>
-                                <label for="param_name" class="formLeft" id="nameuser">Từ ngày:</label></td>
+                                <label for="param_name" class="formLeft" id="nameuser"
+                                       style="margin: 0 !important;min-width: auto;text-align: left;padding: 0;"
+                                >Từ ngày:</label></td>
                             <td class="item">
-                                <div class="input-group date" id="datetimepicker1">
+                                <div class="input-group date" id="datetimepicker1" style="margin-left: 0">
                                     <input type="text" id="fromDate" name="fromDate"
                                            value="<?php echo $this->input->post('fromDate') ?>"> <span
                                             class="input-group-addon">
@@ -41,7 +43,9 @@
                             </td>
 
                             <td>
-                                <label for="param_name" class="formLeft formtoDate"> Đến ngày: </label>
+                                <label for="param_name" class="formLeft formtoDate"
+                                       style="margin: 0 !important;min-width: auto;text-align: left;padding: 0;padding-left: 20px">
+                                    Đến ngày: </label>
                             </td>
                             <td class="item">
 
@@ -59,11 +63,11 @@
                 <div class="formRow">
                     <table>
                         <tr>
-                            <td><label class="session-1">Phiên:</label></td>
+                            <td><label class="session-1" style="margin-left: 0">Phiên:</label></td>
                             <td><input type="text" class="session-2" id="phienbc"
                                        value="<?php echo $this->input->post('phienbc') ?>" name="phienbc"></td>
 
-                            <td><label id="labelvin" class="money-type-1">Phòng:</label></td>
+                            <!-- <td><label id="labelvin" class="money-type-1">Phòng:</label></td>
 
                             <td><select id="menhgiavin" name="menhgiavin"
                                         class="money-type-2">
@@ -95,7 +99,7 @@
                                         echo "selected";
                                     } ?>>1M Xu
                                     </option>
-                                </select></td>
+                                </select></td> -->
                         </tr>
                     </table>
                 </div>
@@ -120,21 +124,21 @@
                 <tr class="list-logminigame">
                     <td>STT</td>
                     <td>Phiên</td>
-                    <td>Phòng</td>
+                    <!--                    <td>Phòng</td>-->
                     <td>Kết quả</td>
-                    <td>Cửa nhân</td>
+<!--                    <td>Cửa nhân</td>-->
                     <td>Tiền đặt bầu</td>
-                    <td>Tiền thưởng bầu</td>
+                    <!--                    <td>Tiền thưởng bầu</td>-->
                     <td>Tiền đặt cua</td>
-                    <td>Tiền thưởng cua</td>
+                    <!--                    <td>Tiền thưởng cua</td>-->
                     <td>Tiền đặt tôm</td>
-                    <td>Tiền thưởng tôm</td>
+                    <!--                    <td>Tiền thưởng tôm</td>-->
                     <td>Tiền đặt cá</td>
-                    <td>Tiền thưởng cá</td>
+                    <!--                    <td>Tiền thưởng cá</td>-->
                     <td>Tiền đặt gà</td>
-                    <td>Tiền thưởng gà</td>
+                    <!--                    <td>Tiền thưởng gà</td>-->
                     <td>Tiền đặt hưou</td>
-                    <td>Tiền thưởng hưou</td>
+                    <!--                    <td>Tiền thưởng hưou</td>-->
                     <td>Tiền thắng thua</td>
                     <td>Ngày tạo</td>
                 </tr>
@@ -180,27 +184,27 @@
         }
     })
 
-    function resultlogbaucua(stt, referid, room, dice1, dice2, dice3, xpot, xvalue, bet_bau, bet_cua, bet_tom, bet_ca, bet_ga, bet_huou, prize_bau, prize_cua, prize_tom, prize_ca, prize_ga, prize_huou, total, time_log) {
+    function resultlogbaucua(stt, referid, dice1, dice2, dice3, total_bau, total_cua, total_tom, total_ca, total_ga, total_huou, total_win_value, time_log) {
         var rs = "";
         rs += "<tr>";
         rs += "<td>" + stt + "</td>";
         rs += "<td>" + referid + "</td>";
-        rs += "<td>" + resultroom(room) + "</td>";
+        // rs += "<td>" + resultroom(room) + "</td>";
         rs += "<td>" + replacedice(dice1 + ',' + dice2 + ',' + dice3) + "</td>";
-        rs += "<td>" + resultbaucua(xpot) + " x " + xvalue + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_bau) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_bau) + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_cua) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_cua) + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_tom) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_tom) + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_ca) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_ca) + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_ga) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_ga) + "</td>";
-        rs += "<td>" + commaSeparateNumber(bet_huou) + "</td>";
-        rs += "<td>" + commaSeparateNumber(prize_huou) + "</td>";
-        rs += "<td>" + commaSeparateNumber(total) + "</td>";
+        // rs += "<td>" + resultbaucua(xpot) + " x " + xvalue + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_bau) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_bau) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_cua) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_cua) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_tom) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_tom) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_ca) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_ca) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_ga) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_ga) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_huou) + "</td>";
+        // rs += "<td>" + commaSeparateNumber(prize_huou) + "</td>";
+        rs += "<td>" + commaSeparateNumber(total_win_value) + "</td>";
         rs += "<td>" + time_log + "</td>";
         rs += "</tr>";
         return rs;
@@ -236,7 +240,7 @@
                     $("#num").html(countrow);
                     stt = 1;
                     $.each(result.transactions, function (index, value) {
-                        result += resultlogbaucua(stt, value.reference_id, value.room, value.dice1, value.dice2, value.dice3, value.x_pot, value.x_value, value.bet_bau, value.bet_cua, value.bet_tom, value.bet_ca, value.bet_ga, value.bet_huou, value.prize_bau, value.prize_cua, value.prize_tom, value.prize_ca, value.prize_ga, value.prize_huou, value.total, value.time_log);
+                        result += resultlogbaucua(stt, value.reference_id, value.dice1, value.dice2, value.dice3, value.total_bau, value.total_cua, value.total_tom, value.total_ca, value.total_ga, value.total_huou, value.total_win_value, value.create_time);
                         stt++;
                     });
 
@@ -264,7 +268,7 @@
                                         $("#spinner").hide();
                                         stt = (page - 1) * 50 + 1;
                                         $.each(result.transactions, function (index, value) {
-                                            result += resultlogbaucua(stt, value.reference_id, value.room, value.dice1, value.dice2, value.dice3, value.x_pot, value.x_value, value.bet_bau, value.bet_cua, value.bet_tom, value.bet_ca, value.bet_ga, value.bet_huou, value.prize_bau, value.prize_cua, value.prize_tom, value.prize_ca, value.prize_ga, value.prize_huou, value.total, value.time_log);
+                                            result += resultlogbaucua(stt, value.reference_id, value.dice1, value.dice2, value.dice3, value.total_bau, value.total_cua, value.total_tom, value.total_ca, value.total_ga, value.total_huou, value.total_win_value, value.create_time);
                                             stt++;
                                         });
                                         $('#logaction').html(result);
@@ -272,7 +276,7 @@
                                         $("#spinner").hide();
                                         $('#logaction').html("");
                                         $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-                                    }, timeout: 40000
+                                    }, timeout: 400000
                                 });
                             }
                             oldpage = page;
@@ -284,7 +288,7 @@
                 $("#spinner").hide();
                 $('#logaction').html("");
                 $("#resultsearch").html("Hệ thống quá tải. Vui lòng gọi 19008698 hoặc F5 lại pages");
-            }, timeout: 40000
+            }, timeout: 400000
         })
     });
 
@@ -351,6 +355,6 @@
                 strresult = "1M Xu";
                 break;
         }
-        return strresult;
+        return !strresult ? "" : strresult;
     }
 </script>

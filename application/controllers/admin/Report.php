@@ -33,8 +33,8 @@ class Report extends MY_Controller
 
         $game = urlencode($this->input->post("game"));
         $version = urlencode($this->input->post("version"));
-        $fromDate = urlencode($this->input->post("fromDate"));
-        $toDate = urlencode($this->input->post("toDate"));
+        $fromDate = ($this->input->post("fromDate"));
+        $toDate = ($this->input->post("toDate"));
 //        $datainfo = $this->sendGet('http://45.32.121.245:8090/game/service/cms' . '?c=103&fd=' . $fromDate . '&td=' . $toDate . '&game=' . $game . '&version=' . $version, '8090');
         if ($this->input->is_ajax_request()) {
             $this->load->model("admin/revenuever_model");
@@ -3508,6 +3508,10 @@ class Report extends MY_Controller
         $maxItem = urlencode($this->input->post("maxItem"));
 //        $datainfo = $this->get_data_curl($this->config->item('api_backend') . '?c=8823&nn=' . $nickName . '&an=' . $actionName . '&sn=' . $serviceName
 //            . '&ft=' . $fromDate . '&et=' . $toDate . '&trid=' . $transId . '&uid=' . $userId . '&cm=' . $currentMoney . '&me=' . $moneyExchange . '&fe=' . $fee . '&pg=' . $page . '&mi=' . $maxItem);
+
+        $datainfo = '{"success":true,"errorCode":"0","message":null,"statistic":null,"totalRecords":810159,"data":{"listData":[{"trans_id":469679813,"user_id":1804375,"nick_name":"kiepbac17","service_name":"Chuyển khoản","current_money":34300,"money_exchange":34300,"description":"Nhận từ DungVy17: x","trans_time":"2024-08-31 20:45:12","action_name":"TransferMoney","fee":0,"create_time":1725111912502}],"totalNap":415008629096}}';
+
+
         if ($this->input->is_ajax_request()) {
             $this->load->model("admin/napwin_report_model");
             $rs = $this->napwin_report_model->search($nickName, $actionName, $toDate, $fromDate, $serviceName, $transId, $userId, $moneyExchange, $currentMoney, $fee, $page, $maxItem);
@@ -3576,16 +3580,18 @@ class Report extends MY_Controller
 
     function userwinajax()
     {
-        $nickName = urlencode($this->input->post("nickName"));
-        $toDate = urlencode($this->input->post("toDate"));
-        $fromDate = urlencode($this->input->post("fromDate"));
-        $game = urlencode($this->input->post("game"));
-        $transId = urlencode($this->input->post("transId"));
-        $page = urlencode($this->input->post("page"));
-        $page_size = urlencode($this->input->post("page_size"));
+        $nickName = ($this->input->post("nickName"));
+        $toDate = ($this->input->post("toDate"));
+        $fromDate = ($this->input->post("fromDate"));
+        $game = ($this->input->post("game"));
+        $transId = ($this->input->post("transId"));
+        $page = ($this->input->post("page"));
+        $page_size = ($this->input->post("page_size"));
 
 //        $datainfo = $this->sendGet('http://45.32.121.245:8090/game/service/cms' . '?c=101&game=' . $game . '&page=' . $page . '&page_size=' . $page_size
 //            . '&fd=' . $fromDate . '&td=' . $toDate . '&nn=' . $nickName . '&referenceId=' . $transId, '8090');
+
+        $datainfo = '{"success":true,"message":"success","errorCode":null,"data":[{"trans_id":470826421,"user_id":3170772,"nick_name":"gaucon24","service_name":"15","current_money":732648.0000,"money_exchange":-1000.0000,"description":"{\"type\":3,\"gameID\":\"15\",\"roomID\":\"1\",\"matchID\":\"53617\"}","trans_time":"2024-09-01T16:46:34","action_name":"Xóc Đĩa","fee":0.0000,"is_bot":false,"play_game":true,"create_time":1725183994152,"id":null,"game":"Lux52"}],"totalData":40378,"totalBet":0,"totalFee":0,"totalSoVongcuoc":0}';
 
         if ($this->input->is_ajax_request()) {
             $this->load->model("admin/userwin_report_model");
@@ -3664,6 +3670,8 @@ class Report extends MY_Controller
         $maxItem = urlencode($this->input->post("maxItem"));
 //        $datainfo = $this->get_data_curl($this->config->item('api_backend') . '?c=8824&nn=' . $nickName . '&an=' . $actionName . '&sn=' . $serviceName
 //            . '&ft=' . $fromDate . '&et=' . $toDate . '&trid=' . $transId . '&uid=' . $userId . '&cm=' . $currentMoney . '&me=' . $moneyExchange . '&fe=' . $fee . '&pg=' . $page . '&mi=' . $maxItem);
+
+        $datainfo = '{"success":true,"errorCode":"0","message":null,"statistic":null,"totalRecords":351890,"data":{"listData":[{"trans_id":469679812,"user_id":960887,"nick_name":"DungVy17","service_name":"Chuyển khoản","current_money":0,"money_exchange":-35000,"description":"Chuyển tới kiepbac17: x","trans_time":"2024-08-31 20:45:12","action_name":"TransferMoney","fee":700,"create_time":1725111912497}],"totalRut":-330253835211}}';
         if ($this->input->is_ajax_request()) {
             $this->load->model("admin/tieuwin_report_model");
             $rs = $this->tieuwin_report_model->search($nickName, $actionName, $toDate, $fromDate, $serviceName, $transId, $userId, $moneyExchange, $currentMoney, $fee, $page, $maxItem);

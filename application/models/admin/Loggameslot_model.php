@@ -76,7 +76,6 @@ class Loggameslot_model extends MY_Model
             '$and' => $conds
         ];
 
-
         $results = $this->mongodb_library->find($filter, $options);
         $tong_cuoc = 0;
         $tong_thang = 0;

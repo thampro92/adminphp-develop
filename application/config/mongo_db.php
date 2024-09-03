@@ -24,19 +24,19 @@
 | make active.  By default there is only one group (the 'default' group).
 |
 */
-$config['mongo_db']['active'] = 'vinplay';
-$config['mongo_db']['vinplay']['no_auth'] = FALSE;
-$config['mongo_db']['vinplay']['hostname'] = '127.0.0.1';
-$config['mongo_db']['vinplay']['port'] = '27017';
-$config['mongo_db']['vinplay']['username'] = 'admin';
-$config['mongo_db']['vinplay']['password'] = 'Aki86dh123';
-$config['mongo_db']['vinplay']['db_auth'] = 'admin';
-$config['mongo_db']['vinplay']['database'] = 'win123club';
-$config['mongo_db']['vinplay']['db_debug'] = TRUE;
-$config['mongo_db']['vinplay']['write_concerns'] = (int)1;
-$config['mongo_db']['vinplay']['journal'] = TRUE;
-$config['mongo_db']['vinplay']['read_preference'] = NULL;
-$config['mongo_db']['vinplay']['read_preference_tags'] = NULL;
+//$config['mongo_db']['active'] = 'vinplay';
+//$config['mongo_db']['vinplay']['no_auth'] = FALSE;
+//$config['mongo_db']['vinplay']['hostname'] = '127.0.0.1';
+//$config['mongo_db']['vinplay']['port'] = '27017';
+//$config['mongo_db']['vinplay']['username'] = 'admin';
+//$config['mongo_db']['vinplay']['password'] = 'Aki86dh123';
+//$config['mongo_db']['vinplay']['db_auth'] = 'admin';
+//$config['mongo_db']['vinplay']['database'] = 'win123club';
+//$config['mongo_db']['vinplay']['db_debug'] = TRUE;
+//$config['mongo_db']['vinplay']['write_concerns'] = (int)1;
+//$config['mongo_db']['vinplay']['journal'] = TRUE;
+//$config['mongo_db']['vinplay']['read_preference'] = NULL;
+//$config['mongo_db']['vinplay']['read_preference_tags'] = NULL;
 
 
 /* End of file database.php */

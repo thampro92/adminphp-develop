@@ -480,6 +480,7 @@ class Usergame extends MY_Controller
 
     function uservinplayajax()
     {
+        set_time_limit(0);
         $username = urlencode($this->input->post("username"));
         $nickname = urlencode($this->input->post("nickname"));
         $phone = urlencode($this->input->post("phone"));

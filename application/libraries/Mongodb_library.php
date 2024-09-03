@@ -189,4 +189,11 @@ class Mongodb_library
 
         return "db.collection.find({$query}{$optionsString})";
     }
+
+    public function getVersion()
+    {
+        $command = new \MongoDB\Driver\Command(['buildInfo' => 1]);
+        $info = $this->collection->command($command)->toArray();
+        return $info[0]->version ?? 'Version info not available';
+    }
 }

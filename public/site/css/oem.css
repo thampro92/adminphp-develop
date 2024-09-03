@@ -15,7 +15,9 @@ body, table {
 }
 
 .pageTitle {
-    padding: 15px 0 0 0;
+    display: block;
+    padding: 0;
+    margin-top: 15px;
 }
 
 .content-header > h1,
@@ -75,7 +77,8 @@ body, table {
 }
 
 .chiller-theme .sidebar-wrapper {
-    background: linear-gradient(120deg, #2b3643 0%, #2b3643 100%);
+    background: #32404E;
+    /*background: linear-gradient(120deg, #2b3643 0%, #2b3643 100%);*/
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header {
@@ -110,7 +113,7 @@ nav ul li:first-child:hover {
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
 nav ul > li {
     color: #b4bcc8;
-    background-color: #2B3643; /*#364150*/
+    background-color: #32404E; /*#364150*/
     border: 0;
 }
 
@@ -119,10 +122,15 @@ nav ul li:first-child,
     background: #364150;
 }
 
-nav ul li ul li.active,
+nav ul li ul li.active {
+    background: #364150;
+    font-weight: 600;
+    border: 0;
+}
+
 nav ul li.active {
-    background: #025291;
-    border-top: 1px solid #025291;
+    background: #57B846;
+    border-top: 1px solid #57B846;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown:not(.active):hover {
@@ -137,7 +145,7 @@ nav ul li.active {
 .sidebar-wrapper .sidebar-menu .sidebar-submenu ul li.active > a,
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a,
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
-    color: #EFC531 !important;
+    /*color: #EFC531 !important;*/
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
@@ -145,7 +153,7 @@ nav ul li.active {
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
-    padding-left: 44px;
+    padding-left: 15px;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li > a {
@@ -153,7 +161,7 @@ nav ul li.active {
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li:not(.active):hover {
-    background: #01579b;
+    background: #43a047;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li:not(.active):hover a {
@@ -166,31 +174,43 @@ nav ul li:first-child, .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar
 
 .button, button, input[type=submit], input[type=reset], input[type=button] {
     align-items: center;
-    background-color: #0A66C2 !important;
+    background-color: #57b846 !important;
     border: 0;
-    border-radius: 100px;
     box-sizing: border-box;
     color: #ffffff;
     cursor: pointer;
     display: inline-flex;
-    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-    font-size: 13px;
     font-weight: 600;
     justify-content: center;
-    line-height: 20px;
     max-width: 480px;
     min-height: 32px;
     min-width: 0px;
     overflow: hidden;
-    padding: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
     text-align: center;
     touch-action: manipulation;
-    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
     user-select: none;
     -webkit-user-select: none;
     vertical-align: middle;
+
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .widget {
@@ -200,10 +220,14 @@ nav ul li:first-child, .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar
 .formRow label.formLeft {
     font-weight: normal;
     color: #000;
+    display: block;
+    text-align: right;
+    padding-right: 10px !important;
+    min-width: 125px;
 }
 
 .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
-    border: 1px solid #e9eaec;
+    border: 1px solid #43a047;
 }
 
 thead td {
@@ -211,21 +235,23 @@ thead td {
     color: #717171;
 }
 
-.mTable>thead>tr>td, .mTable>thead>tr>th,
-.table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-    background: #DBDBDB;
-    border-color: #C5C5C5;
+.mTable > thead > tr > td, .mTable > thead > tr > th,
+.table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+    background: #57B846;
+    border-color: #43a047;
     vertical-align: top;
     word-break: break-word;
+    border-top: 1px solid #43a047 !important;
+    color: #FFF;
 }
 
-.pagination > li:first-child > a, .pagination > li:first-child > span ,
+.pagination > li:first-child > a, .pagination > li:first-child > span,
 .pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span {
     border-top-left-radius: 23px;
     border-bottom-left-radius: 23px;
 }
 
-.pagination > li:last-child > a, .pagination > li:last-child > span ,
+.pagination > li:last-child > a, .pagination > li:last-child > span,
 .pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span {
     border-top-right-radius: 23px;
     border-bottom-right-radius: 23px;
@@ -238,15 +264,15 @@ thead td {
 }
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-    background-color: #0A66C2;
-    border-color: #0A66C2;
+    background-color: #57B846;
+    border-color: #57B846;
 }
 
 .pagination > .active:not(.first) > a {
     border-radius: 0;
 }
 
-.pagination-lg>li>a, .pagination-lg>li>span {
+.pagination-lg > li > a, .pagination-lg > li > span {
     padding: 5px 13px;
     font-size: 16px;
 }
@@ -260,7 +286,12 @@ label {
 }
 
 .horControlB ul li a {
-    background: #FFF;
+    background: #57B846;
+    border-radius: 25px;
+}
+
+.horControlB ul li a span {
+    color: #FFF;
 }
 
 .input-group input#fromDate,
@@ -275,4 +306,100 @@ label {
 
 .btn {
     border-radius: 100px;
+}
+
+nav ul li.header-menu {
+    display: none;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i {
+    display: none;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
+    left: 12px;
+    top: 8px;
+    right: auto;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
+    right: auto;
+}
+
+.modal-header .close {
+    width: auto;
+}
+
+.sidebar-wrapper .sidebar-menu ul li a {
+    padding: 8px 20px 8px 30px;
+}
+
+.page-wrapper.chiller-theme.toggled #close-sidebar,
+.chiller-theme .sidebar-wrapper .sidebar-brand > a {
+    color: #FFF;
+}
+
+.page-wrapper .page-content {
+    padding-top: 0;
+    background: #e7ebee;
+    height: 100%;
+}
+
+.form input[type=text], .form input[type=password], .form textarea {
+    padding: 7px 6px;
+    border: 1px solid #DDD;
+    width: 100%;
+    font-family: Poppins-Medium;
+    color: #666666;
+    display: block;
+    background: #e6e6e6;
+}
+
+.form select {
+    background: #e6e6e6;
+}
+
+.form select:hover {
+    background: #fff;
+}
+
+.titleArea .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleArea .wrapper .horControlB {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.horControlB.menu_action ul li {
+    margin: 0;
+    border-radius: 25px;
+}
+
+.form input[type=text]:focus, .form input[type=password]:focus, .form textarea:focus {
+    border-color: #43a047 !important;
+}
+
+.chiller-theme .sidebar-footer {
+    background: #43a047;
+    border-top: 1px solid #43a047;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role, .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status, .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu, .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text, .chiller-theme .sidebar-wrapper .sidebar-brand > a, .chiller-theme .sidebar-wrapper .sidebar-menu ul li a, .chiller-theme .sidebar-footer > a {
+    color: #FFF;
+}
+
+.sTable tbody tr,
+.sTable tbody td {
+    border-color: #43a047 !important;
+}
+
+.horControlB ul li a {
+    text-decoration: none;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #43a047;;
 }

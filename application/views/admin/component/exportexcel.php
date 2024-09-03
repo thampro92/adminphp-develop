@@ -1,5 +1,5 @@
-<span>
-    <input type="button" id="exportexel" value="Xuất EXCEL" class="button blueB">
+<span style="display: flex">
+    <input type="button" id="exportexel" value="Xuất EXCEL" class="button blueB" style="margin-right: 20px">
     <select id="page_size" name="page_size"
             style=" width: 40px !important;">
                                     <option value="5000" <?php if ($this->input->post('page_size') == "5000") {
